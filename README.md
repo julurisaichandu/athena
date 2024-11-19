@@ -61,7 +61,6 @@ node index.js
 ```
 
 ## Tech Stack
-
 - Next.js
 - Tailwind CSS & Shadcn/ui
 - Clerk
@@ -73,5 +72,8 @@ There are screenshots of our project int he screenshots folder in the athena dir
 Please refer to feedbackplan.pdf file in the the athena directory
 
 ## Note
-We took refrerence from this project
+We took reference from this project
 https://conermurphy.com/blog/how-to-build-your-own-chatgpt-clone-using-clerk-aws-bedrock
+
+Contributors:
+Saichandu Juluri & Pranav Kompally
