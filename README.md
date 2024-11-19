@@ -12,8 +12,7 @@ Athena is an intelligent application that enables users to interact with medical
 ## Prerequisites
 - Node.js v14.x or higher
 - npm or yarn
-- MongoDB (for production or local environment setup)
-- OpenAI or similar API key for AI responses (optional, depending on your setup)
+- OpenAI or similar API key for AI responses (optional, depending on your setup)(we have used groq)
 
 ## Setup & Installation
 Follow these steps to get the application running on your local machine:
