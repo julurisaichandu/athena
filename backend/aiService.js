@@ -1,6 +1,6 @@
 const Groq = require("groq-sdk");
 
-const groq = new Groq({ apiKey: "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" });
+const groq = new Groq({ apiKey: "enter your own key" });
 
 async function getAiResponse(conversation) {
   // try {
