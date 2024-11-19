@@ -44,6 +44,8 @@ NEXT_PUBLIC_API_URL = "http://localhost:<backend port>"
 
 In athena/backend/index.js, fill the GROQ_API_KEY and PORT variables.
 ```
+You can get your groq api key by following the quick start guide from the groq website - https://console.groq.com/docs/quickstart 
+
 if these doesnt work by keeping these in .env.local, try to create .env file in the root folder and copy paste these values.
 
 ### 5. Running the frontend
