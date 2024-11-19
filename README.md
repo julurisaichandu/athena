@@ -1,7 +1,7 @@
 # Athena - Medical Document and Report Analysis
 
 Athena is an intelligent application that enables users to interact with medical data through a conversational interface. It helps patients and doctors by answering queries, generating reports, navigating chat history, and providing a visual representation of the database.
-![Athena](screenshots/initial_page.png)
+![Athena](screenshots/intial_page.png)
 ## Features
 - **Chat with the Database**: Users can interact with the database through a chat interface, asking questions and receiving answers.
 - **Generate Reports**: Users can generate reports related to a patient by chatting with the system.
