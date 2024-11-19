@@ -1,7 +1,7 @@
 # Athena - Medical Document and Report Analysis
 
 Athena is an intelligent application that enables users to interact with medical data through a conversational interface. It helps patients and doctors by answering queries, generating reports, navigating chat history, and providing a visual representation of the database.
-
+![Athena](screenshots/initial_page.png)
 ## Features
 - **Chat with the Database**: Users can interact with the database through a chat interface, asking questions and receiving answers.
 - **Generate Reports**: Users can generate reports related to a patient by chatting with the system.
@@ -29,14 +29,14 @@ npm install
 ```
 
 ### 3. Set Up Environment variables
-#### for authentication
+<!-- #### for authentication
 To do this, first, paste the ENVs you copied from the Clerk dashboard into your `.env.local` file from earlier so it now looks something like this.
 ```bash
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="<get this from clerk>"
 CLERK_SECRET_KEY="<get this from clerk>"
 ```
 follow this blog for authentication setup - https://conermurphy.com/blog/how-to-build-your-own-chatgpt-clone-using-clerk-aws-bedrock
-
+-->
 #### for backend
 Create a .env file in the root directory and define the following variables:
 
