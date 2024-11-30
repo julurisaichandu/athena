@@ -37,16 +37,28 @@ CLERK_SECRET_KEY="<get this from clerk>"
 follow this blog for authentication setup - https://conermurphy.com/blog/how-to-build-your-own-chatgpt-clone-using-clerk-aws-bedrock
 -->
 #### for backend
-Create a .env file in the root directory and define the following variables:
+Create a .env file in the backend directory and define the following variables:
 
 ```bash
-NEXT_PUBLIC_API_URL = "http://localhost:<backend port>"
+MONGO = mongodb+srv://<username>:<password>@cluster0.a2vyk.mongodb.net/?retryWrites=true&w=majority&appName=<clusetername>
+CLIENT_URL = <frontend-url> in mycase it is - http://localhost:5173
 
-In athena/backend/index.js, fill the GROQ_API_KEY and PORT variables.
+
+CLERK_PUBLISHABLE_KEY= "get from clerk website, started with pk"
+CLERK_SECRET_KEY= "get from clerk website, startes with sk"
+
+VITE_GEMINI_PUBLIC_KEY ="get form gemini website"
 ```
-You can get your groq api key by following the quick start guide from the groq website - https://console.groq.com/docs/quickstart 
+#### for frontend
+create .env inside client folder
+# VITE_CLERK_PUBLISHABLE_KEY="pk_test_Y29uY2lzZS1jYXQtNTIuY2xlcmsuYWNjb3VudHMuZGV2JA"
+VITE_API_URL = <backend url> , in my case it is "http://localhost:3000"
+VITE_GEMINI_PUBLIC_KEY = "get form gemini website"
 
-if these doesnt work by keeping these in .env.local, try to create .env file in the root folder and copy paste these values.
+VITE_CLERK_PUBLISHABLE_KEY="get from clerk website, started with pk"
+CLERK_SECRET_KEY="get from clerk website, startes with sk"
+
+some are same in both backend and frontend .env
 
 ### 5. Running the frontend
 run frontend using this below command
