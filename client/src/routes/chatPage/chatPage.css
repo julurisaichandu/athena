@@ -1,0 +1,66 @@
+.chatPage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .wrapper {
+    flex: 1;
+    overflow: scroll;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+  }
+
+  .chat {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .message {
+    display: flex;
+    align-items: flex-start; /* Align icons and message content horizontally */
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 75%;
+  }
+
+  /* User message styles */
+  .message.user {
+    background-color: #d1f7d1; /* Light green background */
+    margin-left: auto; /* Align user messages to the right */
+    align-items: flex-end; /* Align the icon and text in the center */
+  }
+
+  .user-icon {
+    font-size: 20px;
+    margin-right: 10px; /* Space between icon and text */
+    color: #4caf50; /* Green color */
+  }
+
+  /* AI message styles */
+  .message.ai {
+    background-color: #f1f1f1; /* Light gray background */
+    align-items: flex-start; /* Align the icon and text in the center */
+  }
+
+  .ai-icon {
+    font-size: 20px;
+    margin-right: 10px; /* Space between icon and text */
+    color: #2196f3; /* Blue color */
+  }
+
+  /* Message content */
+  .message-content {
+    max-width: 90%;
+  }
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}

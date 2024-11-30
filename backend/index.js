@@ -1,178 +1,283 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { getAiResponse } = require('./aiService'); // Assuming this is a separate module for interacting with Groq Llama
-const cors = require('cors'); // Import the CORS middleware
+import express from "express";
+import cors from "cors";
+import path from "path";
+import url, { fileURLToPath } from "url";
+import mongoose from "mongoose";
+import Chat from "./models/chat.js";
+import UserChats from "./models/userChats.js";
+import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
+import model from "./lib/gemini.js";
 
+const port = process.env.PORT || 3000;
 const app = express();
-app.use(bodyParser.json());
 
-// Enable CORS for all routes
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Allow requests from your frontend origin
-    methods: 'GET,POST', // Allowed HTTP methods
-    credentials: true, // Allow cookies or authentication headers
+    origin: process.env.CLIENT_URL,
+    credentials: true,
   })
 );
-const fs = require('fs');
-const path = require('path');
 
-// Path to the JSON file where the conversations will be saved
-const dbFilePath = path.join(__dirname, 'conversations.json');
-// Simulating in-memory "database" for conversations
-let conversationsDb = {}; // In-memory storage
+app.use(express.json());
+
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO);
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
-const mutex = new Map();
 
-const lockConversation = (key) => {
-  if (mutex.has(key)) {
-    return new Promise((resolve) => {
-      const interval = setInterval(() => {
-        if (!mutex.has(key)) {
-          clearInterval(interval);
-          resolve();
+app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
+  const userId = req.auth.userId;
+  const { text } = req.body;
+
+  try {
+    // CREATE A NEW CHAT
+    const newChat = new Chat({
+      userId: userId,
+      history: [{ role: "user", parts: [{ text }] }],
+    });
+
+    const savedChat = await newChat.save();
+
+    // CHECK IF THE USERCHATS EXISTS
+    const userChats = await UserChats.find({ userId: userId });
+
+    // IF DOESN'T EXIST CREATE A NEW ONE AND ADD THE CHAT IN THE CHATS ARRAY
+    if (!userChats.length) {
+      const newUserChats = new UserChats({
+        userId: userId,
+        chats: [
+          {
+            _id: savedChat._id,
+            title: text.substring(0, 40),
+          },
+        ],
+      });
+
+      await newUserChats.save();
+    } else {
+      // IF EXISTS, PUSH THE CHAT TO THE EXISTING ARRAY
+      await UserChats.updateOne(
+        { userId: userId },
+        {
+          $push: {
+            chats: {
+              _id: savedChat._id,
+              title: text.substring(0, 40),
+            },
+          },
         }
-      }, 10);
-    });
-  }
-  mutex.set(key, true);
-};
+      );
 
-const unlockConversation = (key) => {
-  mutex.delete(key);
-};
-
-
-
-// Helper function to get conversation from "database"
-const getConversationFromDb = async (pk, sk) => {
-  // const conversationKey = `${pk}:${sk}`;
-  // return conversationsDb[conversationKey] || null;
-  try {
-    const data = fs.readFileSync(dbFilePath);
-    const conversationsDb = JSON.parse(data);
-    const conversationKey = `${pk}:${sk}`;
-    return conversationsDb[conversationKey] || null;
-  } catch (error) {
-    console.error('Error reading from database file:', error);
-    return null;
-  }
-};
-
-// Helper function to save conversation to "database"
-const saveConversationToDb = async (conversation) => {
-  // const conversationsDb = readConversationsFromFile(); // Read current conversations from file
-  const conversationKey = `${conversation.pk}:${conversation.sk}`;
-
-  // Save or update the conversation
-  conversationsDb[conversationKey] = conversation;
-
-  // Write the updated conversations back to the JSON file
-  fs.writeFileSync(dbFilePath, JSON.stringify(conversationsDb, null, 2)); // Save the data to file with pretty-print
-};
-
-app.post('/start-conversation', async (req, res) => {
-  // console.log('Received request to start conversation:', req.body);
-  const { pk, sk, uuid, createdAt, updatedAt, title, conversation, status } = req.body;
-
-  try {
-    // Simulating storing conversation object in the "database"
-    const newConversation = {
-      pk,
-      sk,
-      uuid,
-      createdAt,
-      updatedAt,
-      title,
-      conversation,
-      status,
-    };
-
-    // Call LLM to generate AI response
-    const aiResponse = await getAiResponse(newConversation);
-    // console.log('aiResponse-->', aiResponse);
-
-    // Update conversation with AI's response
-    newConversation.conversation.push({
-      author: 'AI',
-      content: aiResponse,
-    });
-
-    // Store the new conversation in the "database"
-    await saveConversationToDb(newConversation);
-
-    return res.status(200).json(newConversation);
-  } catch (error) {
-    console.error('Error handling conversation:', error);
-    res.status(500).json({ error: 'Failed to process conversation' });
+      res.status(201).send(newChat._id);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error creating chat!");
   }
 });
 
-app.post('/continue-conversation', async (req, res) => {
-  const { pk, sk, prompt } = req.body;
-  const key = `${pk}:${sk}`;
-  
-  await lockConversation(key); // Lock the conversation
-  
+app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
+  console.log("UserChats");
+  const userId = req.auth.userId;
+  console.log(userId);
   try {
-    const conversation = await getConversationFromDb(pk, sk);
-    if (!conversation) {
-      return res.status(404).json({ error: 'Conversation not found' });
+    const userChats = await UserChats.find({ userId });
+    res.status(200).send(userChats[0].chats);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error fetching userchats!");
+  }
+});
+
+app.get("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
+  const userId = req.auth.userId;
+
+  try {
+    const chat = await Chat.findOne({ _id: req.params.id, userId });
+
+    res.status(200).send(chat);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error fetching chat!");
+  }
+});
+
+app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
+  console.log("PUT /api/chats/:id");
+  const userId = req.auth.userId;
+
+  const { question, answer } = req.body;
+
+  const newItems = [
+    ...(question
+      ? [{ role: "user", parts: [{ text: question }] }]
+      : []),
+    { role: "model", parts: [{ text: answer }] },
+  ];
+
+  try {
+    const updatedChat = await Chat.updateOne(
+      { _id: req.params.id, userId },
+      {
+        $push: {
+          history: {
+            $each: newItems,
+          },
+        },
+      }
+    );
+    res.status(200).send(updatedChat);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error adding conversation!");
+  }
+});
+
+// POST endpoint to send the text to the model and get a response
+app.post('/api/generate-response', async (req, res) => {
+  try {
+    const { history, text } = req.body;
+
+    const chat = model.startChat({
+      history: history?.map(({ role, parts }) => ({
+        role,
+        parts: [{ text: parts[0].text }],
+      })),
+      generationConfig: {
+        // Optional configuration for generating responses, e.g., max tokens
+      },
+    });
+
+    // Initialize the model and send the text to it
+    const rslt = await chat.sendMessage([text]);
+    const response = await rslt.response.text();
+    console.log(response);
+    res.status(200).send({ answer: response });
+  } catch (err) {
+    console.error('Error generating response:', err);
+    res.status(500).json({ error: 'Something went wrong with the model' });
+  }
+});
+
+
+// import Chat from "./models/chat.js";
+// import model from "./lib/gemini.js";
+
+const generateChatSummary = async (chatId, userId) => {
+  try {
+    // Fetch chat history for the given chatId and userId
+    const chat = await Chat.findOne({ _id: chatId, userId });
+    if (!chat) {
+      throw new Error("Chat not found");
     }
 
-    const updatedConversation = JSON.parse(JSON.stringify(conversation));
+    // Format history for the model
+    const formattedHistory = chat.history.map(({ role, parts }) => ({
+      role,
+      parts: [{ text: parts[0].text }],
+    }));
 
-    // Append the new user prompt to the cloned conversation
-    updatedConversation.conversation.push({
-      author: pk, // User's primary key
-      content: prompt,
+    // Initialize the model chat session
+    const modelChat = model.startChat({
+      history: formattedHistory,
+      generationConfig: {
+      },
     });
 
-    // console.log('conversation after appending-->', updatedConversation);
-    const aiResponse = await getAiResponse(updatedConversation);
-    updatedConversation.conversation.push({ author: 'AI', content: aiResponse });
-    
-    await saveConversationToDb(updatedConversation);
+    // Generate summary by sending a custom prompt
+    const prompt = `Please summarize this conversation in 30 words:`;
+    const response = await modelChat.sendMessage([prompt]);
 
-    res.status(200).json(updatedConversation);
+    const summary = await response.response.text();
+
+    return summary;
   } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Failed to process conversation' });
-  } finally {
-    unlockConversation(key); // Unlock the conversation
+    console.error("Error generating chat summary:", error);
+    throw error;
   }
-});
-
-
-const getConversationFromDbUsingUuid = async (uuid) => {
-  const conversations = Object.values(conversationsDb);
-  return conversations.find((conv) => conv.uuid === uuid);
 };
-app.get('/conversation/:uuid', async (req, res) => {
-  const { uuid } = req.params;
-  // console.log('Received request to fetch conversation:', uuid);
+
+export default generateChatSummary;
+
+
+// GET endpoint to fetch chat overviews for history page
+app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
+  const userId = req.auth.userId;
+
   try {
-  
-    // Loop through all conversations and find the one with the matching UUID
-    const conversation = await getConversationFromDbUsingUuid(uuid);
-    
-    // console.log("first conversation for the uuid-->", conversation);
-    if (!conversation) {
-      return res.status(404).json({ error: 'Conversation not found' });
+    // Fetch the user's chat list
+    const userChats = await UserChats.findOne({ userId });
+
+    if (!userChats || !userChats.chats.length) {
+      return res.status(200).send([]); // No chats available
     }
 
-    // Return the conversation data
-    return res.status(200).json(conversation);
-  } catch (error) {
-    console.error('Error fetching conversation:', error);
-    res.status(500).json({ error: 'Failed to fetch conversation' });
+    // Prepare the chat overviews
+    const overviews = await Promise.all(
+      userChats.chats.map(async (chat) => {
+        const chatData = await Chat.findOne({ _id: chat._id, userId });
+        if (!chatData) return null;
+
+        // Generate summary using the model function
+        const summary = await generateChatSummary(chatData._id, userId);
+
+        // Create a good title for the chat (could be based on the summary or some other logic)
+        const title = summary.length > 50 ? summary.substring(0, 50) + "..." : summary;
+
+        // Return chat overview object
+        return {
+          _id: chatData._id,
+          last_modified: chatData.updatedAt,
+          title,
+          summary,
+          createdAt: chat.createdAt,
+        };
+      })
+    );
+
+    console.log(overviews);
+
+    // Filter out any null entries (if a chat no longer exists)
+    res.status(200).send(overviews.filter(Boolean));
+  } catch (err) {
+    console.error("Error fetching chat overviews:", err);
+    res.status(500).send("Error fetching chat overviews!");
   }
 });
 
 
-// Start server
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(401).send("Unauthenticated!");
+});
+
+
+
+
+
+
+// PRODUCTION
+// app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+// });
+
+// app.get("/", async (req, res) => {
+//   console.log("Hello World!");
+//   res.status(200).send({ message: "Hello World!" });
+// });
+
+app.listen(port, () => {
+  connect();
+  console.log("Server running on 3000");
 });
