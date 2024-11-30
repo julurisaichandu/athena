@@ -51,13 +51,14 @@ VITE_GEMINI_PUBLIC_KEY ="get form gemini website"
 ```
 #### for frontend
 create .env inside client folder
-# VITE_CLERK_PUBLISHABLE_KEY="pk_test_Y29uY2lzZS1jYXQtNTIuY2xlcmsuYWNjb3VudHMuZGV2JA"
+```bash
+VITE_CLERK_PUBLISHABLE_KEY=<"get from clerk website, started with pk>
 VITE_API_URL = <backend url> , in my case it is "http://localhost:3000"
 VITE_GEMINI_PUBLIC_KEY = "get form gemini website"
 
 VITE_CLERK_PUBLISHABLE_KEY="get from clerk website, started with pk"
 CLERK_SECRET_KEY="get from clerk website, startes with sk"
-
+```
 some are same in both backend and frontend .env
 
 ### 5. Running the frontend
