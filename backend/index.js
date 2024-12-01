@@ -1,18 +1,16 @@
 import express from "express";
 import cors from "cors";
-import path from "path";
-import url, { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import Chat from "./models/chat.js";
 import UserChats from "./models/userChats.js";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 import model from "./lib/gemini.js";
+import summarizer_model from "./lib/gemini_summarizer.js";
+import fs from "fs";
 
 const port = process.env.PORT || 3000;
 const app = express();
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 
 app.use(
   cors({
@@ -142,19 +140,23 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   }
 });
 
+
+
 // POST endpoint to send the text to the model and get a response
 app.post('/api/generate-response', async (req, res) => {
   try {
     const { history, text } = req.body;
 
+    
     const chat = model.startChat({
       history: history?.map(({ role, parts }) => ({
         role,
         parts: [{ text: parts[0].text }],
-      })),
+      }
+    )),
       generationConfig: {
         // Optional configuration for generating responses, e.g., max tokens
-      },
+      }
     });
 
     // Initialize the model and send the text to it
@@ -168,9 +170,6 @@ app.post('/api/generate-response', async (req, res) => {
   }
 });
 
-
-// import Chat from "./models/chat.js";
-// import model from "./lib/gemini.js";
 
 const generateChatSummary = async (chatId, userId) => {
   try {
@@ -187,7 +186,7 @@ const generateChatSummary = async (chatId, userId) => {
     }));
 
     // Initialize the model chat session
-    const modelChat = model.startChat({
+    const modelChat = summarizer_model.startChat({
       history: formattedHistory,
       generationConfig: {
       },
@@ -205,9 +204,6 @@ const generateChatSummary = async (chatId, userId) => {
     throw error;
   }
 };
-
-export default generateChatSummary;
-
 
 // GET endpoint to fetch chat overviews for history page
 app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
@@ -272,10 +268,10 @@ app.use((err, req, res, next) => {
 //   res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 // });
 
-// app.get("/", async (req, res) => {
-//   console.log("Hello World!");
-//   res.status(200).send({ message: "Hello World!" });
-// });
+app.get("/", async (req, res) => {
+  console.log("Hello World!");
+  res.status(200).send({ message:         await fs.promises.readdir("patients_json_data") });
+});
 
 app.listen(port, () => {
   connect();

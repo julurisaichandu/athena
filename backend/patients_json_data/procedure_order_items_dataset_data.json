@@ -1,0 +1,112 @@
+[
+    {
+        "admissionid": 7237,
+        "orderid": 74528,
+        "ordercategoryid": 9,
+        "ordercategoryname": "ICU Scoring",
+        "itemid": 2578,
+        "item": "Arterial Blood Gas",
+        "registeredat": "2000-01-01 00:01:03.629000",
+        "registeredby": "Technicians",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 8107,
+        "orderid": 49223,
+        "ordercategoryid": 3,
+        "ordercategoryname": "Emergency Procedures",
+        "itemid": 4188,
+        "item": "Glasgow Coma Scale",
+        "registeredat": "2000-01-01 00:07:41.421000",
+        "registeredby": "Nurses",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 5438,
+        "orderid": 20863,
+        "ordercategoryid": 5,
+        "ordercategoryname": "Blood Draw",
+        "itemid": 9967,
+        "item": "Chest X-Ray",
+        "registeredat": "2000-01-01 00:09:27.084000",
+        "registeredby": "Nurses",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 4331,
+        "orderid": 16483,
+        "ordercategoryid": 8,
+        "ordercategoryname": "Diagnostic Imaging",
+        "itemid": 4284,
+        "item": "Glasgow Coma Scale",
+        "registeredat": "2000-01-01 00:03:01.714000",
+        "registeredby": "Technicians",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 4492,
+        "orderid": 10317,
+        "ordercategoryid": 2,
+        "ordercategoryname": "Routine Nursing Care",
+        "itemid": 5661,
+        "item": "Chest X-Ray",
+        "registeredat": "2000-01-01 00:05:13.075000",
+        "registeredby": "Technicians",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 2343,
+        "orderid": 27272,
+        "ordercategoryid": 8,
+        "ordercategoryname": "Routine Nursing Care",
+        "itemid": 6716,
+        "item": "Chest X-Ray",
+        "registeredat": "2000-01-01 00:03:50.132000",
+        "registeredby": "Physicians",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 7488,
+        "orderid": 89376,
+        "ordercategoryid": 2,
+        "ordercategoryname": "Emergency Procedures",
+        "itemid": 9163,
+        "item": "Central Line Insertion",
+        "registeredat": "2000-01-01 00:07:38.691000",
+        "registeredby": "Nurses",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 4331,
+        "orderid": 48163,
+        "ordercategoryid": 10,
+        "ordercategoryname": "Diagnostic Imaging",
+        "itemid": 3231,
+        "item": "Central Line Insertion",
+        "registeredat": "2000-01-01 00:00:25.387000",
+        "registeredby": "Nurses",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 1263,
+        "orderid": 50191,
+        "ordercategoryid": 5,
+        "ordercategoryname": "Emergency Procedures",
+        "itemid": 2160,
+        "item": "Central Line Insertion",
+        "registeredat": "2000-01-01 00:13:51.317000",
+        "registeredby": "Physicians",
+        "dataset": "Procedure Order Items Dataset"
+    },
+    {
+        "admissionid": 2728,
+        "orderid": 35502,
+        "ordercategoryid": 5,
+        "ordercategoryname": "Diagnostic Imaging",
+        "itemid": 1789,
+        "item": "Chest X-Ray",
+        "registeredat": "2000-01-01 00:07:33.993000",
+        "registeredby": "Nurses",
+        "dataset": "Procedure Order Items Dataset"
+    }
+]

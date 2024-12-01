@@ -61,6 +61,27 @@ CLERK_SECRET_KEY="get from clerk website, startes with sk"
 ```
 some are same in both backend and frontend .env
 
+for setting up clerk credentials:
+- create your clerk account using this quick start tutorial from clerk docs- https://clerk.com/docs/quickstarts/setup-clerk
+- visit this site to get the publishable and secret keys info in the third step,"set environment" section - https://clerk.com/docs/references/nodejs/overview
+- now paste the same in the front end and backend .env files. Check that names of both the keys for backend and frontend are different, howveer the values are same.
+
+for getting the gemini api key:
+- visit the google developers website - https://ai.google.dev/gemini-api/docs/api-key
+- click on the get gemini api key button and after redirecting to the ai studio, you can generate your api key by clicking the "get api key" button.
+- paste the api key into the backend .env file at "VITE_GEMINI_PUBLIC_KEY" 
+
+for getting mongodb api:
+- go to this page of mongodb docs and follow the section named "Create a free MongoDB Atlas cluster and load the sample data" and create a free mongodb cluster- https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
+- Remember your username and password for conenction in the next step
+- in the nextwork access tab on the left, make the api access from all the ip address. for that, click on "add ip address" and select allow access from everywhere and then confirm. 
+- now after creating a mongodb cluster, click the connect button in the overview page and go to drivers section and  you can find a string to connect to the cluster if you scrolldown in the drivers section. fill your username and password in the place holders
+- in the nextwork access tab on the left, make the api access from all the ip address. for that, click on "add ip address" and select allow access from everywhere and then confirm. 
+
+
+gemini models rate limits - https://ai.google.dev/gemini-api/docs/models/gemini#gemini-1.5-flash
+
+
 ### 5. Running the frontend
 run frontend using this below command
 

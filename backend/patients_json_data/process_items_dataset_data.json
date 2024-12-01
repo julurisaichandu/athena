@@ -1,0 +1,92 @@
+[
+    {
+        "admissionid": 3086,
+        "itemid": 5787,
+        "item": "Chest Tube",
+        "start": "2000-01-01 00:04:23.888000",
+        "stop": "2000-01-01 00:25:53.820000",
+        "duration": 230,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 1817,
+        "itemid": 2974,
+        "item": "Urinary Catheter",
+        "start": "2000-01-01 00:14:54.435000",
+        "stop": "2000-01-01 00:32:52.071000",
+        "duration": 228,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 9061,
+        "itemid": 1308,
+        "item": "Urinary Catheter",
+        "start": "2000-01-01 00:12:08.820000",
+        "stop": "2000-01-01 00:22:43.026000",
+        "duration": 168,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 2721,
+        "itemid": 8263,
+        "item": "Renal Replacement Therapy",
+        "start": "2000-01-01 00:13:38.588000",
+        "stop": "2000-01-01 00:20:48.340000",
+        "duration": 195,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 1646,
+        "itemid": 4109,
+        "item": "Hypothermia Induction",
+        "start": "2000-01-01 00:02:28.616000",
+        "stop": "2000-01-01 00:19:16.404000",
+        "duration": 161,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 1263,
+        "itemid": 1210,
+        "item": "Renal Replacement Therapy",
+        "start": "2000-01-01 00:16:39.918000",
+        "stop": "2000-01-01 00:32:28.160000",
+        "duration": 176,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 4886,
+        "itemid": 5427,
+        "item": "Chest Tube",
+        "start": "2000-01-01 00:02:20.611000",
+        "stop": "2000-01-01 00:20:15.491000",
+        "duration": 102,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 9312,
+        "itemid": 1688,
+        "item": "Urinary Catheter",
+        "start": "2000-01-01 00:03:38.784000",
+        "stop": "2000-01-01 00:33:03.388000",
+        "duration": 142,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 9199,
+        "itemid": 3923,
+        "item": "Renal Replacement Therapy",
+        "start": "2000-01-01 00:04:43.957000",
+        "stop": "2000-01-01 00:20:50.648000",
+        "duration": 36,
+        "dataset": "Process Items Dataset"
+    },
+    {
+        "admissionid": 6285,
+        "itemid": 9796,
+        "item": "Hypothermia Induction",
+        "start": "2000-01-01 00:11:10.206000",
+        "stop": "2000-01-01 00:27:33.872000",
+        "duration": 149,
+        "dataset": "Process Items Dataset"
+    }
+]
