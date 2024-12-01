@@ -80,7 +80,7 @@ const system_instruction = `
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
   safetySetting,
-  systemInstruction: `::CONTEXT::\n${context}'\n'${system_instruction}`,
+  // systemInstruction: `::CONTEXT::\n${context}'\n'${system_instruction}`,
 
 });
 const  tokens = await model.countTokens(`::CONTEXT::\n${context}'\n'${system_instruction}`);

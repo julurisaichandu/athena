@@ -30,7 +30,11 @@ const NewPrompt = ({ data }) => {
 
   const mutation = useMutation({
   
+    
     mutationFn: ({ question, answer }) => {
+      console.log("in mutation");
+      console.log("question", question);
+      console.log("answer", answer);
       return fetch(`${import.meta.env.VITE_API_URL}/api/chats/${data._id}`, {
         method: "PUT",
         credentials: "include",
@@ -60,7 +64,7 @@ const NewPrompt = ({ data }) => {
 
   const add = async (text, isInitial) => {
     console.log("add triggered with text:", text);
-    if (!isInitial) setQuestion(text);
+    // if (!isInitial) setQuestion(text);
   
     try {
       console.log("Sending message...");
@@ -80,9 +84,13 @@ const NewPrompt = ({ data }) => {
       console.log("Result from backend:", result);
   
       setAnswer(result.answer); // Update the answer state
-  
-      // Immediately call mutation with the latest question and answer
-      mutation.mutate({ question: text, answer: result.answer });
+      if (!isInitial) {
+        await mutation.mutateAsync({ 
+          question: text, 
+          answer: result.answer 
+        });
+      }
+    
     } catch (err) {
       console.error("Error in add function:", err);
     }
@@ -101,16 +109,19 @@ const NewPrompt = ({ data }) => {
   // IN PRODUCTION WE DON'T NEED IT
   const hasRun = useRef(false);
 
-  useEffect(() => {
-    if (!hasRun.current) {
-      if (data?.history?.length === 1) {
-    console.log("in use effect, is initial true");
+  // useEffect(() => {
+  //   if (!hasRun.current) {
+  //     if (data?.history?.length === 1) {
+  //   console.log("in use effect, is initial true");
 
-        add(data.history[0].parts[0].text, true);
-      }
-    }
-    hasRun.current = true;
-  }, []);
+  //       add(data.history[0].parts[0].text, true);
+  //     }
+  //   }
+  //   hasRun.current = true;
+
+
+    
+  // }, []);
   // console.log("data", data);
 
   return (

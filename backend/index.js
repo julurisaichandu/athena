@@ -41,15 +41,18 @@ const connect = async () => {
 
 app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
-  const { text } = req.body;
+  const { text, initialMessage, answer } = req.body;
 
   try {
     // CREATE A NEW CHAT
     const newChat = new Chat({
-      userId: userId,
-      history: [{ role: "user", parts: [{ text }] }],
+      userId,
+      history: initialMessage 
+        ? [{ role: "user", parts: [{ text }] },
+        { role: "model", parts: [{ text: answer }] }  // Store initial answer
+      ]
+        : []
     });
-
     const savedChat = await newChat.save();
 
     // CHECK IF THE USERCHATS EXISTS
@@ -121,7 +124,7 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
 
   const { question, answer } = req.body;
-
+  console.log("question--->",question,"\n","answer--------->", answer);
   const newItems = [
     ...(question
       ? [{ role: "user", parts: [{ text: question }] }]
@@ -161,9 +164,6 @@ app.post('/api/generate-response', async (req, res) => {
         parts: [{ text: parts[0].text }],
       }
     )),
-      generationConfig: {
-        // Optional configuration for generating responses, e.g., max tokens
-      }
     });
 
     // Initialize the model and send the text to it
