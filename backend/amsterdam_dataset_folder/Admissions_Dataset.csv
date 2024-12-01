@@ -1,0 +1,101 @@
+patientid,admissionid,admissioncount,location,urgency,origin,admittedat,admissionyeargroup,dischargedat,lengthofstay,destination,gender,agegroup,dateofdeath,weightgroup,weightsource,heightgroup,heightsource,specialty
+1,2642,1,IC&MC,0,Regular ward,2000-01-01 00:09:59.781,2021,2000-01-01 00:21:22.418,60,Deceased,Male,36-50,,71-90kg,Measured,<150cm,Estimated,Trauma
+2,5791,2,IC&MC,0,Emergency department,2000-01-01 00:11:54.858,2019,2000-01-01 00:23:55.482,197,Home,Male,0-18,,50-70kg,Estimated,<150cm,Reported,Cardiology
+3,1646,3,MC,0,Outpatient clinic,2000-01-01 00:04:40.096,2020,2000-01-01 00:23:44.379,68,Home,Female,0-18,2000-01-01 00:25:21.347,91-110kg,Reported,>190cm,Reported,Surgery
+4,6867,1,MC,1,Outpatient clinic,2000-01-01 00:14:47.554,2019,2000-01-01 00:28:59.294,93,Rehabilitation center,Female,19-35,,91-110kg,Measured,150-170cm,Estimated,Neurology
+5,3442,4,IC&MC,0,Regular ward,2000-01-01 00:06:06.164,2022,2000-01-01 00:22:32.385,130,Deceased,Male,36-50,,91-110kg,Estimated,150-170cm,Estimated,Surgery
+6,2769,4,IC,0,Emergency department,2000-01-01 00:07:03.912,2019,2000-01-01 00:26:39.985,231,Rehabilitation center,Female,0-18,2000-01-01 00:21:23.418,50-70kg,Estimated,171-190cm,Measured,Trauma
+7,1876,1,IC&MC,0,Emergency department,2000-01-01 00:14:02.297,2020,2000-01-01 00:31:02.695,115,Home,Female,66-80,2000-01-01 00:28:57.646,50-70kg,Estimated,<150cm,Reported,Trauma
+8,9061,3,MC&IC,1,Regular ward,2000-01-01 00:00:06.618,2019,2000-01-01 00:28:20.881,32,Regular ward,Female,81+,,>110kg,Measured,150-170cm,Reported,Cardiology
+9,8641,4,MC&IC,0,Outpatient clinic,2000-01-01 00:10:33.605,2019,2000-01-01 00:24:33.695,239,Rehabilitation center,Male,36-50,,71-90kg,Measured,150-170cm,Estimated,Surgery
+10,1817,5,MC&IC,1,Emergency department,2000-01-01 00:01:32.298,2019,2000-01-01 00:30:51.597,211,Home,Female,51-65,,>110kg,Measured,150-170cm,Estimated,Surgery
+11,3226,4,MC,1,Emergency department,2000-01-01 00:12:08.320,2019,2000-01-01 00:29:25.852,230,Rehabilitation center,Female,51-65,2000-01-01 00:31:41.548,71-90kg,Estimated,>190cm,Reported,Neurology
+12,3590,3,MC,1,Outpatient clinic,2000-01-01 00:04:36.151,2022,2000-01-01 00:27:10.781,74,Home,Female,0-18,2000-01-01 00:30:58.285,91-110kg,Reported,171-190cm,Measured,Surgery
+13,9017,5,IC,1,Outpatient clinic,2000-01-01 00:03:26.905,2020,2000-01-01 00:33:11.037,130,Regular ward,Male,81+,2000-01-01 00:19:36.763,71-90kg,Measured,171-190cm,Measured,Cardiology
+14,9199,3,IC,0,Outpatient clinic,2000-01-01 00:13:08.480,2020,2000-01-01 00:17:49.496,48,Regular ward,Female,81+,,<50kg,Reported,171-190cm,Reported,Trauma
+15,8107,1,MC,1,Regular ward,2000-01-01 00:06:27.905,2020,2000-01-01 00:17:35.822,213,Deceased,Male,0-18,,91-110kg,Estimated,171-190cm,Measured,Cardiology
+16,2532,4,IC,1,Emergency department,2000-01-01 00:07:19.745,2019,2000-01-01 00:26:48.449,152,Regular ward,Male,81+,,50-70kg,Estimated,150-170cm,Reported,Surgery
+17,1546,2,IC&MC,0,Outpatient clinic,2000-01-01 00:16:32.283,2019,2000-01-01 00:17:56.841,171,Home,Female,81+,,71-90kg,Measured,171-190cm,Measured,Cardiology
+18,4288,2,IC&MC,1,Emergency department,2000-01-01 00:15:14.138,2019,2000-01-01 00:22:13.809,204,Regular ward,Male,36-50,,50-70kg,Reported,<150cm,Reported,Trauma
+19,3695,2,IC&MC,1,Emergency department,2000-01-01 00:10:40.327,2021,2000-01-01 00:32:08.948,184,Regular ward,Female,0-18,2000-01-01 00:31:30.281,71-90kg,Reported,>190cm,Measured,Cardiology
+20,2343,2,IC&MC,0,Outpatient clinic,2000-01-01 00:03:26.271,2021,2000-01-01 00:29:37.997,132,Rehabilitation center,Female,19-35,,91-110kg,Estimated,<150cm,Estimated,Cardiology
+21,6855,5,IC&MC,0,Emergency department,2000-01-01 00:14:35.900,2019,2000-01-01 00:23:42.405,215,Regular ward,Female,66-80,,91-110kg,Measured,>190cm,Reported,Cardiology
+22,1263,1,IC&MC,1,Regular ward,2000-01-01 00:09:57.542,2020,2000-01-01 00:31:30.289,138,Home,Male,51-65,,71-90kg,Reported,150-170cm,Reported,Oncology
+23,4955,5,MC&IC,0,Regular ward,2000-01-01 00:14:22.408,2019,2000-01-01 00:26:24.064,102,Home,Male,19-35,2000-01-01 00:24:07.314,71-90kg,Measured,150-170cm,Measured,Surgery
+24,7656,5,MC&IC,0,Regular ward,2000-01-01 00:16:22.027,2022,2000-01-01 00:18:12.305,166,Regular ward,Male,51-65,,71-90kg,Reported,<150cm,Measured,Neurology
+25,6528,3,MC,0,Regular ward,2000-01-01 00:01:39.255,2020,2000-01-01 00:21:05.107,53,Deceased,Male,81+,,>110kg,Measured,<150cm,Estimated,Surgery
+26,4885,3,IC&MC,0,Outpatient clinic,2000-01-01 00:13:15.177,2021,2000-01-01 00:29:36.361,153,Deceased,Female,51-65,,50-70kg,Estimated,>190cm,Measured,Trauma
+27,1464,5,IC,1,Regular ward,2000-01-01 00:02:15.384,2019,2000-01-01 00:27:13.780,60,Regular ward,Female,66-80,,<50kg,Measured,>190cm,Estimated,Oncology
+28,3584,3,MC,0,Regular ward,2000-01-01 00:11:54.413,2019,2000-01-01 00:32:26.196,118,Rehabilitation center,Male,19-35,,71-90kg,Measured,171-190cm,Estimated,Trauma
+29,5438,5,MC&IC,0,Emergency department,2000-01-01 00:06:00.863,2023,2000-01-01 00:20:25.975,173,Rehabilitation center,Male,0-18,,91-110kg,Estimated,>190cm,Estimated,Cardiology
+30,4471,2,IC&MC,1,Regular ward,2000-01-01 00:10:06.196,2021,2000-01-01 00:19:25.185,33,Home,Female,0-18,,91-110kg,Estimated,171-190cm,Estimated,Neurology
+31,4886,1,IC,0,Outpatient clinic,2000-01-01 00:00:57.916,2021,2000-01-01 00:26:37.073,59,Home,Male,0-18,,91-110kg,Estimated,<150cm,Estimated,Neurology
+32,6850,3,IC&MC,1,Emergency department,2000-01-01 00:08:50.159,2019,2000-01-01 00:30:20.610,43,Regular ward,Male,0-18,,>110kg,Estimated,150-170cm,Estimated,Cardiology
+33,9443,2,MC,0,Outpatient clinic,2000-01-01 00:01:30.306,2022,2000-01-01 00:23:05.522,222,Home,Male,81+,,71-90kg,Reported,>190cm,Measured,Oncology
+34,3747,5,MC&IC,0,Outpatient clinic,2000-01-01 00:05:42.313,2020,2000-01-01 00:22:37.940,159,Rehabilitation center,Female,36-50,,>110kg,Estimated,171-190cm,Reported,Trauma
+35,4023,3,IC&MC,1,Emergency department,2000-01-01 00:16:22.584,2023,2000-01-01 00:29:50.287,108,Regular ward,Male,0-18,,71-90kg,Estimated,171-190cm,Reported,Cardiology
+36,5104,5,IC&MC,1,Emergency department,2000-01-01 00:00:43.617,2023,2000-01-01 00:30:21.158,138,Rehabilitation center,Female,0-18,,<50kg,Measured,>190cm,Reported,Oncology
+37,2350,4,MC&IC,0,Regular ward,2000-01-01 00:11:49.618,2023,2000-01-01 00:24:28.113,212,Home,Female,0-18,,71-90kg,Measured,<150cm,Estimated,Trauma
+38,5526,4,IC&MC,0,Outpatient clinic,2000-01-01 00:03:11.215,2022,2000-01-01 00:17:07.219,101,Regular ward,Male,66-80,,50-70kg,Measured,150-170cm,Reported,Surgery
+39,4134,4,MC&IC,0,Outpatient clinic,2000-01-01 00:13:23.214,2019,2000-01-01 00:31:13.667,132,Regular ward,Female,66-80,,91-110kg,Measured,150-170cm,Reported,Trauma
+40,9162,4,MC,0,Regular ward,2000-01-01 00:15:10.782,2019,2000-01-01 00:16:49.035,98,Home,Male,51-65,,>110kg,Reported,150-170cm,Estimated,Trauma
+41,1808,5,IC&MC,0,Emergency department,2000-01-01 00:07:09.965,2019,2000-01-01 00:20:33.507,192,Regular ward,Female,66-80,,91-110kg,Reported,>190cm,Estimated,Surgery
+42,4449,3,IC,0,Emergency department,2000-01-01 00:11:35.143,2019,2000-01-01 00:20:34.122,196,Deceased,Male,19-35,,91-110kg,Estimated,150-170cm,Measured,Neurology
+43,7433,5,MC&IC,0,Regular ward,2000-01-01 00:03:23.099,2022,2000-01-01 00:19:18.179,82,Rehabilitation center,Male,81+,,71-90kg,Estimated,<150cm,Measured,Surgery
+44,9304,1,MC&IC,1,Emergency department,2000-01-01 00:00:20.325,2019,2000-01-01 00:21:15.440,28,Home,Female,36-50,,50-70kg,Estimated,171-190cm,Measured,Neurology
+45,2526,2,MC&IC,0,Emergency department,2000-01-01 00:12:14.642,2019,2000-01-01 00:24:39.001,34,Deceased,Male,81+,,71-90kg,Reported,<150cm,Estimated,Cardiology
+46,4209,1,IC&MC,1,Emergency department,2000-01-01 00:08:33.173,2023,2000-01-01 00:31:10.250,26,Rehabilitation center,Male,81+,2000-01-01 00:31:37.513,50-70kg,Estimated,>190cm,Reported,Cardiology
+47,4824,3,MC&IC,0,Regular ward,2000-01-01 00:11:05.436,2019,2000-01-01 00:31:19.365,15,Deceased,Male,81+,,91-110kg,Reported,>190cm,Measured,Oncology
+48,1220,1,MC&IC,0,Regular ward,2000-01-01 00:08:36.893,2023,2000-01-01 00:18:14.508,72,Deceased,Male,36-50,2000-01-01 00:31:48.036,71-90kg,Reported,150-170cm,Estimated,Cardiology
+49,5473,5,IC&MC,1,Emergency department,2000-01-01 00:01:22.331,2019,2000-01-01 00:23:22.090,218,Rehabilitation center,Female,19-35,,91-110kg,Reported,>190cm,Estimated,Oncology
+50,5903,3,MC&IC,0,Regular ward,2000-01-01 00:01:42.001,2022,2000-01-01 00:20:13.551,101,Regular ward,Male,36-50,,>110kg,Measured,>190cm,Measured,Trauma
+51,8800,5,IC&MC,0,Regular ward,2000-01-01 00:16:11.754,2022,2000-01-01 00:27:02.465,15,Home,Female,51-65,,>110kg,Measured,>190cm,Measured,Trauma
+52,9793,5,IC&MC,0,Regular ward,2000-01-01 00:09:43.242,2019,2000-01-01 00:22:16.874,80,Deceased,Male,0-18,,50-70kg,Estimated,150-170cm,Measured,Trauma
+53,9961,2,IC&MC,1,Emergency department,2000-01-01 00:15:30.473,2022,2000-01-01 00:21:01.323,185,Deceased,Male,36-50,,91-110kg,Reported,<150cm,Reported,Oncology
+54,3086,1,IC&MC,0,Emergency department,2000-01-01 00:01:03.325,2023,2000-01-01 00:24:55.288,163,Home,Female,66-80,,71-90kg,Estimated,150-170cm,Measured,Cardiology
+55,9293,5,IC&MC,1,Outpatient clinic,2000-01-01 00:09:56.106,2021,2000-01-01 00:18:36.328,157,Rehabilitation center,Male,66-80,,71-90kg,Reported,171-190cm,Estimated,Surgery
+56,4401,5,IC&MC,1,Regular ward,2000-01-01 00:06:42.488,2019,2000-01-01 00:19:59.757,229,Deceased,Male,81+,,>110kg,Reported,<150cm,Reported,Oncology
+57,7488,5,MC,0,Outpatient clinic,2000-01-01 00:16:21.716,2022,2000-01-01 00:23:02.169,206,Deceased,Male,0-18,,50-70kg,Estimated,>190cm,Measured,Neurology
+58,7099,1,IC,0,Emergency department,2000-01-01 00:03:15.103,2019,2000-01-01 00:25:06.612,230,Rehabilitation center,Female,19-35,,>110kg,Measured,150-170cm,Measured,Trauma
+59,7202,1,MC,0,Emergency department,2000-01-01 00:02:20.830,2022,2000-01-01 00:28:59.401,197,Rehabilitation center,Male,66-80,,50-70kg,Estimated,<150cm,Estimated,Cardiology
+60,2721,3,IC,1,Outpatient clinic,2000-01-01 00:00:45.704,2021,2000-01-01 00:21:09.257,205,Deceased,Male,19-35,2000-01-01 00:23:54.605,<50kg,Reported,>190cm,Measured,Neurology
+61,4931,2,MC&IC,0,Emergency department,2000-01-01 00:16:13.598,2023,2000-01-01 00:26:08.653,94,Regular ward,Female,36-50,,91-110kg,Estimated,171-190cm,Estimated,Cardiology
+62,3642,3,IC&MC,0,Outpatient clinic,2000-01-01 00:03:42.541,2020,2000-01-01 00:26:12.825,160,Regular ward,Female,66-80,,>110kg,Estimated,150-170cm,Reported,Neurology
+63,1779,5,IC,0,Outpatient clinic,2000-01-01 00:00:20.947,2021,2000-01-01 00:27:26.961,30,Home,Female,19-35,,>110kg,Reported,<150cm,Measured,Cardiology
+64,9710,3,MC,0,Outpatient clinic,2000-01-01 00:06:37.903,2019,2000-01-01 00:32:44.705,34,Home,Female,66-80,,<50kg,Estimated,171-190cm,Measured,Cardiology
+65,5807,4,MC,0,Outpatient clinic,2000-01-01 00:06:56.183,2023,2000-01-01 00:26:28.038,8,Regular ward,Male,51-65,,<50kg,Measured,150-170cm,Estimated,Surgery
+66,4119,2,IC&MC,1,Regular ward,2000-01-01 00:15:21.745,2020,2000-01-01 00:20:57.132,184,Deceased,Male,0-18,2000-01-01 00:31:28.367,<50kg,Estimated,150-170cm,Estimated,Surgery
+67,8499,5,IC,0,Outpatient clinic,2000-01-01 00:13:53.008,2022,2000-01-01 00:29:53.163,222,Regular ward,Male,0-18,,71-90kg,Estimated,171-190cm,Estimated,Surgery
+68,4331,1,IC&MC,1,Outpatient clinic,2000-01-01 00:06:01.711,2023,2000-01-01 00:18:37.026,119,Regular ward,Female,66-80,,>110kg,Estimated,150-170cm,Estimated,Cardiology
+69,1549,1,MC&IC,1,Emergency department,2000-01-01 00:06:20.154,2023,2000-01-01 00:26:14.865,26,Home,Female,19-35,,>110kg,Estimated,171-190cm,Reported,Cardiology
+70,8598,3,IC&MC,1,Emergency department,2000-01-01 00:13:39.562,2023,2000-01-01 00:21:25.635,100,Home,Female,81+,,<50kg,Reported,150-170cm,Reported,Oncology
+71,6448,4,IC,0,Emergency department,2000-01-01 00:08:39.759,2022,2000-01-01 00:31:56.793,151,Rehabilitation center,Female,0-18,,>110kg,Reported,>190cm,Measured,Cardiology
+72,3786,4,IC&MC,0,Regular ward,2000-01-01 00:01:34.206,2019,2000-01-01 00:18:39.267,145,Deceased,Male,19-35,,<50kg,Reported,171-190cm,Measured,Surgery
+73,9435,1,MC&IC,1,Regular ward,2000-01-01 00:00:09.643,2023,2000-01-01 00:29:44.979,128,Deceased,Male,36-50,,<50kg,Reported,<150cm,Reported,Oncology
+74,1702,4,IC,0,Emergency department,2000-01-01 00:09:35.260,2023,2000-01-01 00:26:37.966,54,Rehabilitation center,Female,81+,,>110kg,Reported,171-190cm,Estimated,Oncology
+75,2728,1,IC&MC,0,Emergency department,2000-01-01 00:00:44.784,2020,2000-01-01 00:31:07.119,191,Deceased,Female,66-80,,91-110kg,Measured,171-190cm,Reported,Surgery
+76,5437,4,MC&IC,0,Regular ward,2000-01-01 00:08:52.674,2020,2000-01-01 00:21:56.434,119,Rehabilitation center,Female,81+,,91-110kg,Estimated,<150cm,Measured,Surgery
+77,5398,2,MC&IC,0,Outpatient clinic,2000-01-01 00:11:16.396,2022,2000-01-01 00:26:13.129,153,Rehabilitation center,Female,66-80,,50-70kg,Measured,>190cm,Estimated,Cardiology
+78,5585,4,MC,0,Outpatient clinic,2000-01-01 00:07:58.886,2023,2000-01-01 00:23:14.562,187,Rehabilitation center,Female,36-50,,<50kg,Estimated,<150cm,Reported,Neurology
+79,1215,3,IC,0,Regular ward,2000-01-01 00:16:08.824,2021,2000-01-01 00:30:51.189,14,Regular ward,Male,0-18,,<50kg,Reported,>190cm,Reported,Surgery
+80,2565,4,MC&IC,0,Emergency department,2000-01-01 00:03:57.199,2020,2000-01-01 00:30:48.849,54,Home,Female,51-65,2000-01-01 00:33:14.299,50-70kg,Reported,>190cm,Reported,Cardiology
+81,8128,5,MC,1,Emergency department,2000-01-01 00:13:57.387,2022,2000-01-01 00:22:43.359,71,Deceased,Female,81+,,50-70kg,Estimated,171-190cm,Estimated,Surgery
+82,9159,1,IC,1,Emergency department,2000-01-01 00:03:56.378,2022,2000-01-01 00:22:15.492,27,Rehabilitation center,Female,81+,,50-70kg,Estimated,150-170cm,Reported,Trauma
+83,8268,2,MC&IC,0,Regular ward,2000-01-01 00:15:44.223,2023,2000-01-01 00:31:57.995,133,Home,Female,81+,,91-110kg,Reported,>190cm,Reported,Cardiology
+84,8876,1,MC&IC,0,Regular ward,2000-01-01 00:12:37.902,2019,2000-01-01 00:30:52.443,189,Deceased,Male,19-35,,<50kg,Reported,150-170cm,Measured,Surgery
+85,3252,5,MC&IC,0,Regular ward,2000-01-01 00:10:55.649,2019,2000-01-01 00:22:14.323,211,Regular ward,Female,0-18,,71-90kg,Measured,171-190cm,Measured,Cardiology
+86,6285,1,MC,0,Emergency department,2000-01-01 00:02:54.610,2019,2000-01-01 00:29:40.085,8,Rehabilitation center,Female,36-50,,50-70kg,Measured,171-190cm,Estimated,Cardiology
+87,8143,1,MC,0,Emergency department,2000-01-01 00:12:45.295,2021,2000-01-01 00:23:28.946,76,Regular ward,Female,51-65,,71-90kg,Estimated,171-190cm,Measured,Surgery
+88,6604,5,IC,1,Emergency department,2000-01-01 00:08:05.389,2019,2000-01-01 00:25:46.724,31,Deceased,Female,81+,,<50kg,Reported,150-170cm,Reported,Surgery
+89,9312,1,MC&IC,1,Outpatient clinic,2000-01-01 00:07:05.053,2021,2000-01-01 00:26:19.657,50,Deceased,Female,19-35,,71-90kg,Estimated,>190cm,Estimated,Surgery
+90,3049,3,MC,0,Regular ward,2000-01-01 00:05:18.282,2019,2000-01-01 00:27:22.263,52,Regular ward,Male,19-35,,71-90kg,Estimated,171-190cm,Reported,Cardiology
+91,9022,2,MC&IC,0,Regular ward,2000-01-01 00:04:31.590,2020,2000-01-01 00:24:50.880,50,Regular ward,Female,0-18,,50-70kg,Estimated,>190cm,Reported,Neurology
+92,5016,1,MC&IC,0,Emergency department,2000-01-01 00:15:13.231,2021,2000-01-01 00:29:22.327,6,Regular ward,Female,36-50,,<50kg,Estimated,<150cm,Estimated,Neurology
+93,4492,4,IC,1,Outpatient clinic,2000-01-01 00:08:20.675,2023,2000-01-01 00:23:27.742,106,Deceased,Female,81+,,>110kg,Estimated,171-190cm,Reported,Trauma
+94,7002,5,IC,0,Outpatient clinic,2000-01-01 00:12:30.329,2021,2000-01-01 00:23:58.058,37,Home,Male,51-65,,>110kg,Measured,>190cm,Estimated,Oncology
+95,7536,5,MC&IC,0,Outpatient clinic,2000-01-01 00:14:01.325,2020,2000-01-01 00:29:37.102,136,Rehabilitation center,Male,66-80,,<50kg,Reported,>190cm,Estimated,Trauma
+96,8084,3,IC&MC,1,Regular ward,2000-01-01 00:16:01.776,2021,2000-01-01 00:19:38.015,217,Regular ward,Male,66-80,,91-110kg,Estimated,171-190cm,Estimated,Cardiology
+97,8347,1,MC&IC,1,Outpatient clinic,2000-01-01 00:11:07.423,2021,2000-01-01 00:26:20.601,213,Rehabilitation center,Male,66-80,,91-110kg,Measured,<150cm,Reported,Surgery
+98,2607,2,MC&IC,1,Emergency department,2000-01-01 00:04:43.859,2023,2000-01-01 00:24:35.982,70,Home,Male,19-35,,91-110kg,Measured,150-170cm,Measured,Trauma
+99,7237,4,IC,1,Regular ward,2000-01-01 00:02:09.692,2020,2000-01-01 00:24:40.328,192,Regular ward,Female,51-65,2000-01-01 00:31:44.626,50-70kg,Measured,>190cm,Reported,Surgery
+100,2820,3,IC,0,Outpatient clinic,2000-01-01 00:12:38.696,2019,2000-01-01 00:24:53.549,51,Home,Female,66-80,,>110kg,Reported,<150cm,Reported,Oncology

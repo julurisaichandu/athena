@@ -7,9 +7,16 @@ import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 import model from "./lib/gemini.js";
 import summarizer_model from "./lib/gemini_summarizer.js";
 import fs from "fs";
+import ICUDataManager from "./lib/db_merger.js";
+import path from "path";
 
 const port = process.env.PORT || 3000;
 const app = express();
+const dataManager = new ICUDataManager("uploads");
+
+const UPLOAD_DIR = './uploads';
+
+console.log("server running");
 
 
 app.use(
@@ -250,6 +257,160 @@ app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
   }
 });
 
+
+//get the merged db
+app.get('/api/view-db', async (req, res) => {
+  try {
+      const data = await dataManager.getData();
+      const uniqueCatarogicalValuesForFilters = dataManager.getUniqueCategoricalValues();
+      res.json({ data, uniqueCatarogicalValuesForFilters });
+
+      // res.json(data);
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch ICU data' });
+  }
+});
+
+import multer from 'multer';
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadDir = UPLOAD_DIR;
+    
+    // Create uploads directory if it doesn't exist
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    // Use original filename, allowing overwrite
+    const fileName = file.originalname;
+    const filePath = path.join(UPLOAD_DIR, fileName);
+
+    // If file exists, remove it before uploading new version
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
+    cb(null, fileName);
+  }
+});
+
+const upload = multer({ 
+  storage: storage, 
+  fileFilter: (req, file, cb) => {
+    // Validate CSV file
+    const allowedMimeTypes = ['text/csv', 'application/vnd.ms-excel'];
+    if (allowedMimeTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only CSV files are allowed!'), false);
+    }
+  }
+});
+
+//get the merged db
+app.post('/api/store-csv', upload.single('file'), async (req, res) => {
+  try {
+ 
+    if (!req.file) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'No file uploaded or invalid file type' 
+      });
+    }
+    
+    // Get list of files in the upload directory
+    const uploadDir = UPLOAD_DIR;
+    const fileNames = fs.readdirSync(uploadDir)
+      .filter(file => 
+        path.extname(file).toLowerCase() === '.csv'
+      );
+
+
+    console.log('File uploaded successfully:', req.file.path);
+    
+    res.status(200).json({ 
+      success: true, 
+      message: 'File uploaded successfully', 
+      filename: req.file.filename,
+      filePath: req.file.path,
+      files: fileNames
+    });
+
+  } catch (error) {
+    console.error('File upload error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to upload file',
+      details: error.message 
+    });
+  }
+});
+
+app.get('/api/existing-csv-files', (req, res) => {
+  try {
+    const uploadDir = UPLOAD_DIR;
+    
+    // Check if upload directory exists
+    if (!fs.existsSync(uploadDir)) {
+      return res.status(200).json({ 
+        success: true,
+        existingFiles: [] 
+      });
+    }
+
+    const fileNames = fs.readdirSync(uploadDir)
+      .filter(file => 
+        path.extname(file).toLowerCase() === '.csv'
+      );
+
+    res.status(200).json({ 
+      success: true,
+      existingFiles: fileNames 
+    });
+  } catch (error) {
+    console.error('Error fetching existing CSV files:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Failed to retrieve CSV files',
+      existingFiles: [] 
+    });
+  }
+});
+
+app.delete('/api/delete-csv', (req, res) => {
+  const { filename } = req.body;
+  const uploadDir = UPLOAD_DIR;
+  const filePath = path.join(uploadDir, filename);
+
+  try {
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'File not found' 
+      });
+    }
+
+    // Delete the file
+    fs.unlinkSync(filePath);
+
+    res.status(200).json({ 
+      success: true, 
+      message: 'File deleted successfully' 
+    });
+  } catch (error) {
+    console.error('Error deleting file:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to delete file',
+      error: error.message 
+    });
+  }
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

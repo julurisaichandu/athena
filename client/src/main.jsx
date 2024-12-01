@@ -10,6 +10,8 @@ import DashboardLayout from "./layouts/dashboardLayout/DashboardLayout";
 import SignInPage from "./routes/signInPage/signInPage";
 import SignUpPage from "./routes/signUpPage/signUpPage";
 import HistoryPage from "./routes/historyPage/historyPage";
+import DbVisualizerPage from "./routes/dbVisualizerPage/DbVisualizerPage";
+import HelpPage from "./routes/helpPage/HelpPage";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
           {
             path:"/history",
             element: <HistoryPage />,
+          },
+          {
+            path:"/db-visualizer",
+            element: <DbVisualizerPage />,
+          },
+          {
+            path:"/help",
+            element: <HelpPage />,
           }
         ],
       },

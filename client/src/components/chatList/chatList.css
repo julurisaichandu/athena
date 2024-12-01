@@ -6,7 +6,7 @@
   hr {
     border: none;
     height: 2px;
-    background-color: #ddd;
+    background-color: #171313;
     opacity: 0.1;
     border-radius: 5px;
     margin: 20px 0px;
@@ -71,4 +71,115 @@
   font-size: 119%;
     color: #545151;
     margin-right: 5%;
+}
+
+
+
+.csv-upload {
+  margin-top: 20px;
+}
+
+.csv-input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.upload-btn {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.upload-btn:hover {
+  background-color: #45a049;
+}
+
+/* Style for the loading spinner */
+.loading-icon {
+  font-size: 18px;
+  margin-right: 10px;
+  animation: spin 1s linear infinite; /* Apply the spinning animation */
+}
+
+/* Keyframes for the spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.upload-icon{
+  margin-right:5px ;
+}
+
+.existing-files-section {
+  /* margin-top: 20px; */
+  /* padding: 15px; */
+  border-radius: 10px;
+  background-color: #f2f1f1;
+
+}
+
+.existing-files-section h4 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
+}
+
+.existing-files-list {
+  list-style-type: none;
+  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.existing-file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #d2d1d1;
+  font-size: 13px;
+}
+
+.file-icon {
+  margin-right: 10px;
+  color: #666;
+}
+
+.no-files-message {
+  color: #888;
+  font-size: 13px;
+  text-align: center;
+}
+
+
+
+.delete-file-btn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.delete-file-btn:hover {
+  color: #ff0000;
+}
+
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

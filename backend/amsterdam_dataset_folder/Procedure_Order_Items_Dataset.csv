@@ -1,0 +1,170 @@
+admissionid,orderid,ordercategoryid,ordercategoryname,itemid,item,registeredat,registeredby
+7237,74528,9,ICU Scoring,2578,Arterial Blood Gas,2000-01-01 00:01:03.629000,Technicians
+8107,49223,3,Emergency Procedures,4188,Glasgow Coma Scale,2000-01-01 00:07:41.421000,Nurses
+5438,20863,5,Blood Draw,9967,Chest X-Ray,2000-01-01 00:09:27.084000,Nurses
+4331,16483,8,Diagnostic Imaging,4284,Glasgow Coma Scale,2000-01-01 00:03:01.714000,Technicians
+4492,10317,2,Routine Nursing Care,5661,Chest X-Ray,2000-01-01 00:05:13.075000,Technicians
+2343,27272,8,Routine Nursing Care,6716,Chest X-Ray,2000-01-01 00:03:50.132000,Physicians
+7488,89376,2,Emergency Procedures,9163,Central Line Insertion,2000-01-01 00:07:38.691000,Nurses
+4331,48163,10,Diagnostic Imaging,3231,Central Line Insertion,2000-01-01 00:00:25.387000,Nurses
+1263,50191,5,Emergency Procedures,2160,Central Line Insertion,2000-01-01 00:13:51.317000,Physicians
+2728,35502,5,Diagnostic Imaging,1789,Chest X-Ray,2000-01-01 00:07:33.993000,Nurses
+7237,11071,5,Emergency Procedures,2261,Chest X-Ray,2000-01-01 00:11:33.402000,Physicians
+7099,38279,3,Diagnostic Imaging,3649,Central Line Insertion,2000-01-01 00:03:28.330000,Nurses
+4288,90964,9,Emergency Procedures,5686,Glasgow Coma Scale,2000-01-01 00:13:25.547000,Nurses
+2343,80947,6,Blood Draw,5800,Wound Dressing,2000-01-01 00:09:56.152000,Technicians
+4288,15346,2,Emergency Procedures,1578,Arterial Blood Gas,2000-01-01 00:00:10.220000,Technicians
+8876,85086,7,Blood Draw,2440,Arterial Blood Gas,2000-01-01 00:06:51.245000,Technicians
+2721,15047,6,Emergency Procedures,2329,Arterial Blood Gas,2000-01-01 00:10:20.897000,Technicians
+5104,58057,3,ICU Scoring,3760,Wound Dressing,2000-01-01 00:10:58.307000,Physicians
+9435,78973,1,Blood Draw,5848,Glasgow Coma Scale,2000-01-01 00:02:49.076000,Nurses
+4886,73336,3,Routine Nursing Care,1520,Glasgow Coma Scale,2000-01-01 00:03:26.002000,Physicians
+5016,91373,9,ICU Scoring,7844,Glasgow Coma Scale,2000-01-01 00:02:29.265000,Technicians
+3786,19675,4,Emergency Procedures,6972,Arterial Blood Gas,2000-01-01 00:15:13.880000,Nurses
+6285,17508,9,Emergency Procedures,3642,Central Line Insertion,2000-01-01 00:13:01.329000,Physicians
+8107,36332,9,ICU Scoring,4782,Chest X-Ray,2000-01-01 00:08:04.238000,Physicians
+1646,38371,9,Diagnostic Imaging,5417,Arterial Blood Gas,2000-01-01 00:07:35.644000,Nurses
+4209,84649,3,Diagnostic Imaging,2449,Glasgow Coma Scale,2000-01-01 00:04:32.429000,Technicians
+9017,64837,1,ICU Scoring,4013,Chest X-Ray,2000-01-01 00:15:31.893000,Physicians
+8641,23833,10,ICU Scoring,6780,Wound Dressing,2000-01-01 00:06:06.678000,Nurses
+8143,14344,2,ICU Scoring,4104,Wound Dressing,2000-01-01 00:10:29.137000,Nurses
+8800,97969,4,Routine Nursing Care,7717,Arterial Blood Gas,2000-01-01 00:14:15.585000,Nurses
+8499,39111,8,Diagnostic Imaging,8233,Arterial Blood Gas,2000-01-01 00:09:28.164000,Nurses
+2642,63286,2,Emergency Procedures,1959,Central Line Insertion,2000-01-01 00:15:50.853000,Technicians
+9293,73875,10,ICU Scoring,5186,Arterial Blood Gas,2000-01-01 00:06:15.949000,Technicians
+3642,23527,5,Diagnostic Imaging,1510,Chest X-Ray,2000-01-01 00:04:15.472000,Nurses
+8107,60052,6,Emergency Procedures,6411,Arterial Blood Gas,2000-01-01 00:04:01.895000,Nurses
+6285,65335,1,ICU Scoring,4118,Chest X-Ray,2000-01-01 00:12:42.019000,Technicians
+5438,88667,3,Emergency Procedures,6850,Chest X-Ray,2000-01-01 00:04:25.512000,Nurses
+6850,80516,1,Blood Draw,7936,Wound Dressing,2000-01-01 00:05:45.103000,Nurses
+3747,63891,3,Diagnostic Imaging,8878,Chest X-Ray,2000-01-01 00:07:15.752000,Technicians
+2721,61944,4,Routine Nursing Care,2749,Chest X-Ray,2000-01-01 00:07:32.037000,Nurses
+7202,72695,3,Routine Nursing Care,9569,Glasgow Coma Scale,2000-01-01 00:13:38.757000,Technicians
+4492,86656,7,Blood Draw,6841,Central Line Insertion,2000-01-01 00:02:02.716000,Technicians
+5526,65912,2,Diagnostic Imaging,6338,Glasgow Coma Scale,2000-01-01 00:08:28.857000,Physicians
+7237,95601,3,Emergency Procedures,2612,Wound Dressing,2000-01-01 00:03:50.972000,Nurses
+3252,50726,4,Emergency Procedures,1623,Chest X-Ray,2000-01-01 00:01:12.063000,Nurses
+1702,76053,3,Routine Nursing Care,3225,Chest X-Ray,2000-01-01 00:07:43.320000,Physicians
+9304,81863,4,Routine Nursing Care,7524,Central Line Insertion,2000-01-01 00:10:04.233000,Nurses
+1702,52065,10,Emergency Procedures,1084,Central Line Insertion,2000-01-01 00:04:34.852000,Technicians
+9793,47159,1,Diagnostic Imaging,4222,Chest X-Ray,2000-01-01 00:09:08.604000,Physicians
+7202,81312,2,Diagnostic Imaging,2216,Chest X-Ray,2000-01-01 00:00:41.742000,Physicians
+1220,88635,2,Emergency Procedures,6424,Wound Dressing,2000-01-01 00:07:25.417000,Physicians
+7202,49308,2,Emergency Procedures,1927,Central Line Insertion,2000-01-01 00:00:30.552000,Technicians
+8128,39876,4,Routine Nursing Care,6141,Chest X-Ray,2000-01-01 00:04:17.755000,Technicians
+9162,35379,7,Routine Nursing Care,3597,Central Line Insertion,2000-01-01 00:13:36.282000,Technicians
+7656,28471,1,Diagnostic Imaging,9606,Central Line Insertion,2000-01-01 00:02:17.573000,Technicians
+1702,89912,10,Emergency Procedures,7101,Central Line Insertion,2000-01-01 00:02:10.410000,Physicians
+4449,14287,9,Routine Nursing Care,5550,Glasgow Coma Scale,2000-01-01 00:01:59.136000,Technicians
+4492,59835,7,Diagnostic Imaging,1243,Chest X-Ray,2000-01-01 00:08:15.716000,Technicians
+1464,44371,7,Routine Nursing Care,7775,Central Line Insertion,2000-01-01 00:00:31.115000,Physicians
+6528,93290,7,Emergency Procedures,6591,Chest X-Ray,2000-01-01 00:12:56.002000,Nurses
+8347,67873,9,Diagnostic Imaging,8924,Glasgow Coma Scale,2000-01-01 00:06:49.539000,Nurses
+8800,46105,1,Diagnostic Imaging,9464,Central Line Insertion,2000-01-01 00:06:53.563000,Physicians
+1702,27256,6,Diagnostic Imaging,9609,Arterial Blood Gas,2000-01-01 00:01:56.828000,Nurses
+8598,42612,6,Routine Nursing Care,5034,Chest X-Ray,2000-01-01 00:14:23.065000,Technicians
+6867,35603,8,Diagnostic Imaging,3702,Central Line Insertion,2000-01-01 00:06:14.682000,Nurses
+1546,35607,7,ICU Scoring,8043,Chest X-Ray,2000-01-01 00:02:58.246000,Nurses
+3695,43696,8,Emergency Procedures,1096,Central Line Insertion,2000-01-01 00:15:51.415000,Physicians
+3226,98540,1,Diagnostic Imaging,2100,Arterial Blood Gas,2000-01-01 00:08:35.632000,Nurses
+4824,92824,3,Emergency Procedures,8996,Glasgow Coma Scale,2000-01-01 00:13:20.489000,Technicians
+4023,38243,5,Blood Draw,8946,Central Line Insertion,2000-01-01 00:14:14.007000,Nurses
+3695,35870,7,ICU Scoring,3417,Chest X-Ray,2000-01-01 00:09:37.756000,Nurses
+9961,24254,6,Routine Nursing Care,7926,Arterial Blood Gas,2000-01-01 00:11:27.239000,Physicians
+2642,93570,6,Emergency Procedures,3563,Central Line Insertion,2000-01-01 00:16:10.222000,Nurses
+3049,99663,4,ICU Scoring,7573,Wound Dressing,2000-01-01 00:12:21.971000,Nurses
+7656,87874,2,Emergency Procedures,4314,Chest X-Ray,2000-01-01 00:05:19.467000,Nurses
+4288,15800,10,ICU Scoring,7822,Wound Dressing,2000-01-01 00:09:15.547000,Technicians
+7433,48692,6,Diagnostic Imaging,8478,Central Line Insertion,2000-01-01 00:05:04.164000,Nurses
+9159,78044,7,Diagnostic Imaging,9921,Central Line Insertion,2000-01-01 00:09:37.152000,Nurses
+2721,36291,5,Routine Nursing Care,1226,Central Line Insertion,2000-01-01 00:00:43.993000,Technicians
+2728,47707,7,Blood Draw,6280,Chest X-Ray,2000-01-01 00:03:54.989000,Technicians
+3695,92818,9,ICU Scoring,5097,Glasgow Coma Scale,2000-01-01 00:09:12.290000,Technicians
+7536,28549,3,ICU Scoring,4470,Glasgow Coma Scale,2000-01-01 00:13:30.068000,Physicians
+9961,67830,8,Diagnostic Imaging,5968,Glasgow Coma Scale,2000-01-01 00:03:11.215000,Physicians
+5903,56061,6,ICU Scoring,5818,Central Line Insertion,2000-01-01 00:00:03.073000,Physicians
+9061,60359,6,Diagnostic Imaging,3696,Chest X-Ray,2000-01-01 00:04:50.900000,Technicians
+5903,87730,2,Blood Draw,1646,Arterial Blood Gas,2000-01-01 00:01:11.057000,Physicians
+4492,96692,2,ICU Scoring,7061,Chest X-Ray,2000-01-01 00:06:29.690000,Physicians
+9022,19636,10,Diagnostic Imaging,9640,Wound Dressing,2000-01-01 00:02:13.437000,Nurses
+8143,51190,10,Blood Draw,7522,Glasgow Coma Scale,2000-01-01 00:02:24.617000,Technicians
+9435,89450,1,Emergency Procedures,7981,Glasgow Coma Scale,2000-01-01 00:02:09.571000,Technicians
+5437,44564,6,Diagnostic Imaging,2546,Arterial Blood Gas,2000-01-01 00:01:25.879000,Physicians
+5104,52000,7,Routine Nursing Care,8830,Arterial Blood Gas,2000-01-01 00:02:21.093000,Nurses
+8084,50911,9,Blood Draw,3156,Central Line Insertion,2000-01-01 00:11:13.244000,Nurses
+2820,60092,7,Routine Nursing Care,5667,Glasgow Coma Scale,2000-01-01 00:01:53.511000,Technicians
+4288,62949,10,Blood Draw,5666,Chest X-Ray,2000-01-01 00:06:40.237000,Nurses
+5807,92549,10,Emergency Procedures,3002,Central Line Insertion,2000-01-01 00:03:45.229000,Physicians
+8800,37763,7,Blood Draw,3996,Central Line Insertion,2000-01-01 00:06:38.430000,Technicians
+7099,39321,2,ICU Scoring,3540,Wound Dressing,2000-01-01 00:13:03.900000,Nurses
+9710,49769,6,Routine Nursing Care,7572,Central Line Insertion,2000-01-01 00:04:24.608000,Nurses
+7237,48045,10,ICU Scoring,8859,Central Line Insertion,2000-01-01 00:01:19.044000,Nurses
+2343,45166,1,Routine Nursing Care,5297,Chest X-Ray,2000-01-01 00:03:02.392000,Nurses
+1263,67789,6,Blood Draw,2818,Central Line Insertion,2000-01-01 00:03:59.708000,Physicians
+6855,14641,3,ICU Scoring,8108,Arterial Blood Gas,2000-01-01 00:09:34.234000,Physicians
+9022,87443,2,Blood Draw,5645,Central Line Insertion,2000-01-01 00:01:46.630000,Technicians
+1808,93692,7,Blood Draw,2812,Wound Dressing,2000-01-01 00:07:26.015000,Nurses
+3442,79970,9,ICU Scoring,7703,Central Line Insertion,2000-01-01 00:06:46.822000,Physicians
+2532,66572,6,Routine Nursing Care,7679,Glasgow Coma Scale,2000-01-01 00:12:50.494000,Nurses
+4119,40569,8,Diagnostic Imaging,2621,Wound Dressing,2000-01-01 00:03:37.299000,Nurses
+5903,82072,9,ICU Scoring,3530,Wound Dressing,2000-01-01 00:07:16.340000,Technicians
+6855,54233,9,Routine Nursing Care,8528,Chest X-Ray,2000-01-01 00:08:09.699000,Nurses
+4119,19590,7,Blood Draw,6850,Glasgow Coma Scale,2000-01-01 00:10:10.212000,Physicians
+3590,15240,1,ICU Scoring,5832,Wound Dressing,2000-01-01 00:15:43.211000,Technicians
+4824,55051,6,ICU Scoring,2060,Chest X-Ray,2000-01-01 00:12:27.967000,Physicians
+4134,85352,9,ICU Scoring,4903,Glasgow Coma Scale,2000-01-01 00:13:42.684000,Nurses
+8876,74878,3,Diagnostic Imaging,9444,Chest X-Ray,2000-01-01 00:02:44.815000,Technicians
+9312,80068,5,Routine Nursing Care,3511,Chest X-Ray,2000-01-01 00:08:36.288000,Technicians
+6855,63611,3,Routine Nursing Care,6568,Central Line Insertion,2000-01-01 00:15:27.843000,Nurses
+4471,23099,7,Blood Draw,6941,Arterial Blood Gas,2000-01-01 00:00:19.431000,Technicians
+2343,46192,10,ICU Scoring,7756,Chest X-Ray,2000-01-01 00:06:11.697000,Nurses
+8347,41983,5,Diagnostic Imaging,4568,Arterial Blood Gas,2000-01-01 00:09:20.861000,Nurses
+3226,19050,4,ICU Scoring,6032,Glasgow Coma Scale,2000-01-01 00:04:18.441000,Nurses
+1263,79602,8,Diagnostic Imaging,1673,Wound Dressing,2000-01-01 00:13:58.294000,Physicians
+7237,72367,8,Diagnostic Imaging,9061,Glasgow Coma Scale,2000-01-01 00:05:33.583000,Nurses
+9710,19064,5,Emergency Procedures,2444,Chest X-Ray,2000-01-01 00:06:40.184000,Technicians
+8598,36753,2,Routine Nursing Care,8097,Chest X-Ray,2000-01-01 00:13:48.043000,Technicians
+9199,53800,9,Emergency Procedures,9073,Glasgow Coma Scale,2000-01-01 00:01:17.459000,Technicians
+9017,62939,3,Routine Nursing Care,4076,Chest X-Ray,2000-01-01 00:16:17.977000,Technicians
+7488,25302,9,Blood Draw,3966,Arterial Blood Gas,2000-01-01 00:10:56.966000,Technicians
+9159,23411,2,Blood Draw,8331,Chest X-Ray,2000-01-01 00:13:40.873000,Nurses
+3584,45296,3,Emergency Procedures,3100,Chest X-Ray,2000-01-01 00:13:45.053000,Physicians
+4824,69039,6,ICU Scoring,4079,Arterial Blood Gas,2000-01-01 00:12:14.677000,Technicians
+9159,90706,5,Diagnostic Imaging,3291,Wound Dressing,2000-01-01 00:13:31.873000,Physicians
+4931,32717,6,Diagnostic Imaging,4163,Wound Dressing,2000-01-01 00:08:25.341000,Nurses
+7656,43277,7,ICU Scoring,8226,Arterial Blood Gas,2000-01-01 00:07:04.647000,Technicians
+1549,36023,10,ICU Scoring,8192,Chest X-Ray,2000-01-01 00:01:29.635000,Nurses
+3590,10202,7,Emergency Procedures,9378,Wound Dressing,2000-01-01 00:13:00.393000,Physicians
+3049,90374,1,Emergency Procedures,6629,Central Line Insertion,2000-01-01 00:08:52.887000,Technicians
+9022,10277,5,Diagnostic Imaging,4962,Wound Dressing,2000-01-01 00:00:39.560000,Physicians
+4023,71273,6,Blood Draw,7858,Arterial Blood Gas,2000-01-01 00:07:55.009000,Physicians
+3642,63987,2,ICU Scoring,5708,Chest X-Ray,2000-01-01 00:07:25.767000,Technicians
+8107,29563,4,Blood Draw,9811,Chest X-Ray,2000-01-01 00:10:09.593000,Nurses
+7656,15893,8,Routine Nursing Care,3983,Chest X-Ray,2000-01-01 00:02:45.287000,Nurses
+2526,81313,4,Diagnostic Imaging,4842,Chest X-Ray,2000-01-01 00:09:04.821000,Nurses
+1876,39741,9,Emergency Procedures,9608,Chest X-Ray,2000-01-01 00:01:26.909000,Technicians
+4134,42435,5,Blood Draw,4239,Glasgow Coma Scale,2000-01-01 00:10:48.222000,Technicians
+1546,24121,5,Emergency Procedures,9616,Arterial Blood Gas,2000-01-01 00:07:36.256000,Physicians
+1220,41505,1,Routine Nursing Care,8041,Arterial Blood Gas,2000-01-01 00:10:55.785000,Technicians
+4449,56590,6,Routine Nursing Care,4226,Arterial Blood Gas,2000-01-01 00:13:51.817000,Nurses
+9304,18061,10,ICU Scoring,8166,Central Line Insertion,2000-01-01 00:10:37.711000,Nurses
+2565,82219,8,Emergency Procedures,9524,Chest X-Ray,2000-01-01 00:13:45.042000,Physicians
+3086,0,0,0,0,Default Procedure,0,0
+4885,0,0,0,0,Default Procedure,0,0
+5398,0,0,0,0,Default Procedure,0,0
+1817,0,0,0,0,Default Procedure,0,0
+5791,0,0,0,0,Default Procedure,0,0
+2350,0,0,0,0,Default Procedure,0,0
+2607,0,0,0,0,Default Procedure,0,0
+6448,0,0,0,0,Default Procedure,0,0
+4401,0,0,0,0,Default Procedure,0,0
+1215,0,0,0,0,Default Procedure,0,0
+8268,0,0,0,0,Default Procedure,0,0
+6604,0,0,0,0,Default Procedure,0,0
+2769,0,0,0,0,Default Procedure,0,0
+5585,0,0,0,0,Default Procedure,0,0
+7002,0,0,0,0,Default Procedure,0,0
+4955,0,0,0,0,Default Procedure,0,0
+5473,0,0,0,0,Default Procedure,0,0
+9443,0,0,0,0,Default Procedure,0,0
+1779,0,0,0,0,Default Procedure,0,0

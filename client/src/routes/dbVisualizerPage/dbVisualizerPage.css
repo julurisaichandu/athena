@@ -1,0 +1,285 @@
+/* General container */
+.db-visualizer-container {
+    /* max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.db-table-container {
+    max-height: 400px; /* Set a height limit for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Keep the table header fixed */
+.db-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #f4f4f4; /* Match the header background color */
+    z-index: 1; /* Ensure the header stays on top while scrolling */
+}
+
+/* Summary Section */
+.summary {
+    /* background: #f1f7ff; */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Table Styles */
+.db-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.db-table th,
+.db-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.db-table th {
+    background: #f2f1f1;
+    color: #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.db-table tbody tr:nth-child(even) {
+    background-color: #f7faff;
+}
+
+.db-table tbody tr:hover {
+    background-color: #eef6ff;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+/* Details Section */
+.details-container {
+    /* margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.details-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.details-section th,
+.details-section td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.details-section th {
+    background: #f2f1f1;
+    color: #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Button styles */
+.back-button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 15%;
+}
+
+h3{
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.back-button:hover {
+    background: #0056b3;
+}
+
+
+/* Filter Section Styling */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f2f1f1;
+}
+
+/* Input Fields Styling */
+.filters input[type="text"],
+.filters select {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 250px;
+    box-sizing: border-box;
+}
+
+/* Range Slider */
+.filters input[type="range"] {
+    width: 200px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+/* Range Label Styling */
+.filters span {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+    align-self: center;
+}
+
+/* Placeholder Text Styling */
+.filters input[type="text"]::placeholder {
+    color: #bbb;
+}
+
+/* Dropdown Select Styling */
+.filters select {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+/* Hover Effects for Input Fields and Select */
+.filters input[type="text"]:hover,
+.filters select:hover {
+    border-color: #7f7f7f;
+}
+
+/* Focus Effects for Input Fields and Select */
+.filters input[type="text"]:focus,
+.filters select:focus {
+    border-color: #4e8dff;
+    outline: none;
+}
+
+/* Responsive Styling for Filter Section */
+@media screen and (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filters input[type="text"],
+    .filters select {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+.error{
+    font-size: 135%;
+    background: #f07171;
+    padding: 3%;
+}
+.loading-btn{
+    font-size: 135%;
+    background: #f0f071;
+    padding: 3%;
+}
+
+
+/* Styling the container for the count and button */
+.count-and-download {
+    display: flex;
+    justify-content: flex-end; /* Align both elements to the right */
+    align-items: center;
+    gap: 10px; /* Space between the count and the button */
+    margin: 20px 0; /* Add some margin for spacing */
+  }
+  
+  /* Styling the count paragraph */
+  .count-and-download p {
+    font-size: 14px;
+    color: #333; /* Dark gray color for the text */
+    font-weight: 500;
+    margin: 0; /* Remove any default margin */
+  }
+  
+  /* Styling the download button */
+  .download-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px; /* Padding for the button */
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; /* Center the icon and text */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button hover effect */
+  .download-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+  }
+  
+  /* Button focus effect for accessibility */
+  .download-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); /* Blue outline */
+  }
+  
+  /* Styling the icon inside the button */
+  .download-btn svg {
+    margin-left: 8px; /* Space between the text and the icon */
+    font-size: 16px; /* Icon size */
+  }
+  
+  /* Optional: Add a loading spinner effect (if you want a loader while downloading) */
+  .download-btn.loading {
+    background-color: #ddd; /* Gray background while loading */
+    color: #aaa; /* Lighter text */
+    cursor: not-allowed; /* Show a not-allowed cursor */
+  }
+  
+  .download-btn.loading svg {
+    animation: spin 1s linear infinite; /* Add spinning animation to the icon */
+  }
+  
+  /* Spinner animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
