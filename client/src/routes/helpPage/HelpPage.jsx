@@ -37,7 +37,27 @@ const HelpPage = () => {
             <div className="help-description">
                 <h3>How to use the app:</h3>
                 <p>This app allows doctors to easily visualize and manage patient data. You can filter the dataset based on various criteria, view detailed information for each patient, and navigate through their medical history.</p>
+                <h3>
+                    Create a New Chat Page
+                </h3>
+                <p>You can ask about your patients using the chat feature in this page.</p>
+                <h3>
+                    History Page
+                </h3>
+                <p>Stores all the previous chats history. User can click on each chat history can visit the chat and continue to chat about the patient</p>
+                <h3>
+                    Database Visuaalizer Page
+                </h3>
+                <p>User can visualize, filter and download patients details in the form of tables. User can click on each user and get more details about theie medications etc.</p>
                 <h3>FAQs</h3>
+                <h3>
+                    Help Page
+                </h3>
+                <p>User can get information about features of the app and also some frequently asked questions</p>
+                <h3>
+                    Upload button
+                </h3>
+                <p>Users can add new patients data into the data base and search about them</p>
             </div>
             <div className="help-list">
                 {helpData.map((help, index) => (

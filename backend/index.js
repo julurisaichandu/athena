@@ -3,13 +3,17 @@ import cors from "cors";
 import mongoose from "mongoose";
 import Chat from "./models/chat.js";
 import UserChats from "./models/userChats.js";
+import UserFeedbacks from "./models/feedback.js";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
-import model from "./lib/gemini.js";
+import {manual_system_instruction, context} from "./lib/gemini.js";
 import summarizer_model from "./lib/gemini_summarizer.js";
 import fs from "fs";
 import ICUDataManager from "./lib/db_merger.js";
 import path from "path";
+import {
+  GoogleGenerativeAI,
 
+} from "@google/generative-ai";
 const port = process.env.PORT || 3000;
 const app = express();
 const dataManager = new ICUDataManager("uploads");
@@ -17,6 +21,7 @@ const dataManager = new ICUDataManager("uploads");
 const UPLOAD_DIR = './uploads';
 
 console.log("server running");
+const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_PUBLIC_KEY);
 
 
 app.use(
@@ -94,9 +99,9 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
 });
 
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
-  console.log("UserChats");
+  // console.log("UserChats");
   const userId = req.auth.userId;
-  console.log(userId);
+  // console.log(userId);
   try {
     const userChats = await UserChats.find({ userId });
     res.status(200).send(userChats[0].chats);
@@ -150,12 +155,31 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   }
 });
 
+async function getUserModelConfiguration(userId) {
+  const userFeedback = await UserFeedbacks.findOne({ userId });
+
+  
+  return {
+    systemInstruction: userFeedback?.systemInstruction || 'reply every answer starting with athena:',
+    model: 'gemini-1.5-flash'
+  };
+}
 
 
 // POST endpoint to send the text to the model and get a response
-app.post('/api/generate-response', async (req, res) => {
+app.post('/api/generate-response', ClerkExpressRequireAuth(), async (req, res) => {
   try {
     const { history, text } = req.body;
+    const userId = req.auth.userId;
+    // Retrieve user-specific model configuration
+    const userModelConfig = await getUserModelConfiguration(userId);
+
+    // console.log('system prompt:', userModelConfig.systemInstruction);
+    // Initialize model with user's specific configuration
+    const model = genAI.getGenerativeModel({
+      model: userModelConfig.model,
+      systemInstruction: userModelConfig.systemInstruction + "\n STRICTLY FOLLOW BELOW INSTRUCTIONS ASWELL" + `::CONTEXT::\n${context}'\n'${manual_system_instruction}`
+    });
 
     
     const chat = model.startChat({
@@ -163,8 +187,7 @@ app.post('/api/generate-response', async (req, res) => {
         role,
         parts: [{ text: parts[0].text }],
       }
-    )),
-    });
+    )),    });
 
     // Initialize the model and send the text to it
     const rslt = await chat.sendMessage([text]);
@@ -176,6 +199,75 @@ app.post('/api/generate-response', async (req, res) => {
     res.status(500).json({ error: 'Something went wrong with the model' });
   }
 });
+
+
+export function generateRefinedSystemInstruction(feedbacks) {
+  const aggregatedFeedback = feedbacks.map(fb => 
+    `Feedback (Importance: ${fb.importance}): ${fb.message}`
+  ).join('\n');
+
+  return `
+    REFINED RESPONSE GUIDELINES:
+    ${aggregatedFeedback}
+
+    Additional Refinement Principles:
+    1. STRICTLY FOLLOW THE FEEDBACK GIVEN ABOVE
+    2. Incorporate user feedback for continuous improvement
+    3. Adapt communication style based on user preferences
+
+  `;
+}
+
+app.post('/api/feedback', ClerkExpressRequireAuth(), async (req, res) => {
+  try {
+    const { message, importance } = req.body;
+    const userId = req.auth.userId;
+
+    // Find or create user feedback document
+    let userFeedback = await UserFeedbacks.findOne({ userId });
+
+    // If userFeedback doesn't exist, create a new one
+    if (!userFeedback) {
+      userFeedback = new UserFeedbacks({
+        userId,
+        feedbacks: [],
+        systemInstruction: 'Default system instruction',  // Initial system instruction
+        lastUpdated: new Date(),
+      });
+    }
+
+    // Create the new feedback object
+    const newFeedback = {
+      message,
+      importance,
+    };
+
+    // Add the new feedback to the feedbacks array
+    userFeedback.feedbacks.push(newFeedback);
+
+    // Optionally, you can limit to the last 5 feedbacks
+    const refinedInstruction = generateRefinedSystemInstruction(
+      userFeedback.feedbacks.slice(-5) // Use last 5 feedbacks to generate system instruction
+    );
+
+    // Update the system instruction and lastUpdated fields
+    userFeedback.systemInstruction = refinedInstruction;
+    userFeedback.lastUpdated = new Date();
+
+    // Save the updated feedback document
+    await userFeedback.save();
+
+    // Respond to the client
+    res.status(200).json({
+      message: 'Feedback processed successfully',
+      success: true,
+    });
+  } catch (error) {
+    console.error('Feedback processing error:', error);
+    res.status(500).json({ error: 'Feedback processing failed' });
+  }
+});
+
 
 
 const generateChatSummary = async (chatId, userId) => {

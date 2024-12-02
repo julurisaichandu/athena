@@ -55,8 +55,8 @@ const safetySetting = [
 ];
 
 const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_PUBLIC_KEY);
-const context = await getPatientsDetails();
-const system_instruction = `
+export const context = await getPatientsDetails();
+export const manual_system_instruction = `
     STRICT RESPONSE GUIDELINES:
     1. ONLY use information directly present in the provided context above.
     2. If ANY requested information is NOT in the context:
@@ -83,6 +83,6 @@ const model = genAI.getGenerativeModel({
   // systemInstruction: `::CONTEXT::\n${context}'\n'${system_instruction}`,
 
 });
-const  tokens = await model.countTokens(`::CONTEXT::\n${context}'\n'${system_instruction}`);
+const  tokens = await model.countTokens(`::CONTEXT::\n${context}'\n'${manual_system_instruction}`);
 console.log("tokens count---------------------------->", tokens);
 export default model;
