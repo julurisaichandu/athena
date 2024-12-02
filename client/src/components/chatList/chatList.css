@@ -67,6 +67,13 @@
   }
 }
 
+.chatList > div:last-child {
+  margin-top: auto; /* Pushes this div to the bottom */
+  font-size: 12px;
+  color: #555; /* Optional: style the note */
+
+  padding: 10px;
+}
 .link-icon{
   font-size: 119%;
     color: #545151;

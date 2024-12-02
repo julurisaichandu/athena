@@ -62,7 +62,7 @@ export const manual_system_instruction = `
     2. If ANY requested information is NOT in the context:
        - Respond with "Information not available in the provided context."
        - DO NOT generate, guess, or fabricate any details.
-    3. Match the response format exactly to the user's request.
+    3. Match the response format exactly to the user's request. Format output suitable for the react-markdown component.
     4. If unsure about any part of the response, state that explicitly.
     5. Prioritize accuracy over completeness.
     

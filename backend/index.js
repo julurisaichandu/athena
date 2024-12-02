@@ -20,8 +20,10 @@ const dataManager = new ICUDataManager("uploads");
 
 const UPLOAD_DIR = './uploads';
 
+const GOOGLE_API_KEY = process.env.VITE_GEMINI_PUBLIC_KEY;
+const MONGO_DB_API_KEY = process.env.MONGO;
 console.log("server running");
-const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_PUBLIC_KEY);
+const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 
 
 app.use(
@@ -35,7 +37,7 @@ app.use(express.json());
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(MONGO_DB_API_KEY);
     console.log("Connected to MongoDB");
   } catch (err) {
     console.log(err);
@@ -129,7 +131,7 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
 
   const { question, answer } = req.body;
-  console.log("question--->",question,"\n","answer--------->", answer);
+  // console.log("question--->",question,"\n","answer--------->", answer);
   const newItems = [
     ...(question
       ? [{ role: "user", parts: [{ text: question }] }]
@@ -279,7 +281,7 @@ const generateChatSummary = async (chatId, userId) => {
     }
 
     // Format history for the model
-    const formattedHistory = chat.history.map(({ role, parts }) => ({
+    const formattedHistory = chat.history.slice(0, 2).map(({ role, parts }) => ({
       role,
       parts: [{ text: parts[0].text }],
     }));
@@ -292,7 +294,7 @@ const generateChatSummary = async (chatId, userId) => {
     });
 
     // Generate summary by sending a custom prompt
-    const prompt = `Please summarize this conversation in 30 words:`;
+    const prompt = `Summarize this conversation in 15 words`;
     const response = await modelChat.sendMessage([prompt]);
 
     const summary = await response.response.text();
@@ -326,7 +328,7 @@ app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
         const summary = await generateChatSummary(chatData._id, userId);
 
         // Create a good title for the chat (could be based on the summary or some other logic)
-        const title = summary.length > 50 ? summary.substring(0, 50) + "..." : summary;
+        const title = summary.length > 15 ? summary.substring(0, 15) + "..." : summary;
 
         // Return chat overview object
         return {
@@ -339,7 +341,7 @@ app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
       })
     );
 
-    console.log(overviews);
+    // console.log(overviews);
 
     // Filter out any null entries (if a chat no longer exists)
     res.status(200).send(overviews.filter(Boolean));

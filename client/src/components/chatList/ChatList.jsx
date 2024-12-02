@@ -115,7 +115,7 @@ const ChatList = () => {
       <hr />
 
       {/* Existing Files Section */}
-      <div className="existing-files-section">
+      {/* <div className="existing-files-section">
         <h4>Uploaded CSV Files</h4>
         {existingFiles.length > 0 ? (
           <ul className="existing-files-list">
@@ -138,7 +138,7 @@ const ChatList = () => {
         ) : (
           <p className="no-files-message">No CSV files uploaded yet</p>
         )}
-      </div>
+      </div> */}
 
       {/* CSV Upload Section */}
       <div className="csv-upload">
@@ -159,10 +159,14 @@ const ChatList = () => {
           ) : (
             <>
               <FontAwesomeIcon icon={faFileUpload} className="upload-icon" /> 
-              Upload CSV
+              Upload Patients Data
             </>
           )}
         </label>
+      </div>
+
+      <div>
+      <b>Disclaimer: <br></br></b>This tool is designed to assist you but may occasionally produce incorrect or incomplete information. Please review all outputs carefully and consult a professional for critical decisions.
       </div>
     </div>
   );
