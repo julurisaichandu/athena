@@ -12,6 +12,26 @@ const ChatList = () => {
   const [loading, setLoading] = useState(false);
   const [existingFiles, setExistingFiles] = useState([]);
 
+  const drop = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/drop-database`, {
+        method: 'DELETE',
+      });
+      const result = await response.json();
+  
+      if (result.success) {
+        alert("Database dropped successfully!");
+        setExistingFiles([]); // Clear existing files
+        reloadDBPage();
+      } else {
+        alert(result.message || "Failed to drop the database");
+      }
+    } catch (error) {
+      console.error("Error dropping the database:", error);
+      alert("Error dropping the database.");
+    }
+  };
+  
   
   const reloadDBPage = () => {
 
@@ -111,11 +131,12 @@ const ChatList = () => {
       <Link to="/help">
         <FontAwesomeIcon icon={faQuestionCircle} className="link-icon" /> Help
       </Link>
+      {/* <button onClick={drop} className="drop-database-btn">Drop Database</button> */}
 
       <hr />
 
       {/* Existing Files Section */}
-      {/* <div className="existing-files-section">
+      <div className="existing-files-section">
         <h4>Uploaded CSV Files</h4>
         {existingFiles.length > 0 ? (
           <ul className="existing-files-list">
@@ -138,7 +159,7 @@ const ChatList = () => {
         ) : (
           <p className="no-files-message">No CSV files uploaded yet</p>
         )}
-      </div> */}
+      </div>
 
       {/* CSV Upload Section */}
       <div className="csv-upload">

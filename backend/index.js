@@ -44,12 +44,47 @@ const connect = async () => {
   }
 };
 
+/**remove this method afterwards */
+// Endpoint to drop all collections
+app.delete("/api/drop-database", async (req, res) => {
+  try {
+    const collections = ['chats', 'userchats', 'userFeedbacks']; // Add collection names here
+    
+    for (const collectionName of collections) {
+      const collectionExists = await mongoose.connection.db
+        .listCollections({ name: collectionName })
+        .hasNext();
+      
+      if (collectionExists) {
+        await mongoose.connection.db.dropCollection(collectionName);
+        console.log(`Dropped collection: ${collectionName}`);
+      } else {
+        console.log(`Collection ${collectionName} does not exist`);
+      }
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Collections dropped successfully",
+    });
+  } catch (err) {
+    console.error("Error dropping collections:", err);
+    res.status(500).json({
+      success: false,
+      error: "Failed to drop collections",
+      details: err.message,
+    });
+  }
+});
+
+
 
 
 app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
   const { text, initialMessage, answer } = req.body;
 
+  console.log("POST /api/chats called with text:", text, "initialMessage:", initialMessage, "answer:", answer);
   try {
     // CREATE A NEW CHAT
     const newChat = new Chat({
@@ -92,8 +127,9 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
         }
       );
 
-      res.status(201).send(newChat._id);
     }
+      console.log("Chat created with id: from backend", newChat._id);
+      res.status(201).send(newChat._id);
   } catch (err) {
     console.log(err);
     res.status(500).send("Error creating chat!");
@@ -180,7 +216,8 @@ app.post('/api/generate-response', ClerkExpressRequireAuth(), async (req, res) =
     // Initialize model with user's specific configuration
     const model = genAI.getGenerativeModel({
       model: userModelConfig.model,
-      systemInstruction: userModelConfig.systemInstruction + "\n STRICTLY FOLLOW BELOW INSTRUCTIONS ASWELL" + `::CONTEXT::\n${context}'\n'${manual_system_instruction}`
+      // systemInstruction: userModelConfig.systemInstruction + "\n STRICTLY FOLLOW BELOW INSTRUCTIONS ASWELL" + `::CONTEXT::\n${context}'\n'${manual_system_instruction}`
+      systemInstruction: userModelConfig.systemInstruction
     });
 
     

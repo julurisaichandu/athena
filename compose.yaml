@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  web:
+    depends_on:
+      - api
+    build: ./client 
+    ports:
+      - 5173:5173
+    environment:
+      VITE_API_URL: "http://localhost:3000"
+      VITE_GEMINI_PUBLIC_KEY: AIzaSyAY2qYfwkqQomDEgQkFw6AujY_bQ6xtEpU
+      VITE_CLERK_PUBLISHABLE_KEY: "pk_test_Y29uY2lzZS1jYXQtNTIuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      CLERK_SECRET_KEY: "sk_test_YALICOcLq6f1PvahemBNT2vejll6irwNEJHnXasFms"
+  api:
+    build: ./backend
+    ports:
+      - 3000:3000
+    environment:
+      MONGO: mongodb+srv://jsc:jsc@cluster0.a2vyk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      CLIENT_URL: http://localhost:5173
+      CLERK_PUBLISHABLE_KEY: pk_test_Y29uY2lzZS1jYXQtNTIuY2xlcmsuYWNjb3VudHMuZGV2JA
+      CLERK_SECRET_KEY: sk_test_YALICOcLq6f1PvahemBNT2vejll6irwNEJHnXasFms
+      VITE_GEMINI_PUBLIC_KEY: AIzaSyAY2qYfwkqQomDEgQkFw6AujY_bQ6xtEpU
+
+volumes:
+  volume_backend:

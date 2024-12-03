@@ -22,6 +22,7 @@ const DashboardPage = () => {
     });
 
     const { answer } = await responseResult.json();
+    console.log("Answer from dashboard:", answer);
 
       return fetch(`${import.meta.env.VITE_API_URL}/api/chats`, {
         method: "POST",
@@ -39,6 +40,7 @@ const DashboardPage = () => {
     onSuccess: (id) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["userChats"] });
+      console.log("Chat created with id:", id);
       navigate(`/dashboard/chats/${id}`);
     },
   });

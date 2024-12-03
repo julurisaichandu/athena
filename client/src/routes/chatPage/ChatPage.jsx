@@ -54,6 +54,8 @@ const ChatPage = () => {
     }
   };
 
+  console.log("Chat page called -> Data:", data);
+
   return (
     <div className="chatPage">
       <div className="wrapper">
