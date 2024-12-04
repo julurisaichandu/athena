@@ -3,20 +3,27 @@ import cors from "cors";
 import mongoose from "mongoose";
 import Chat from "./models/chat.js";
 import UserChats from "./models/userChats.js";
+import UserFeedbacks from "./models/feedback.js";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
-import model from "./lib/gemini.js";
+import {manual_system_instruction, context} from "./lib/gemini.js";
 import summarizer_model from "./lib/gemini_summarizer.js";
 import fs from "fs";
 import ICUDataManager from "./lib/db_merger.js";
 import path from "path";
+import {
+  GoogleGenerativeAI,
 
+} from "@google/generative-ai";
 const port = process.env.PORT || 3000;
 const app = express();
 const dataManager = new ICUDataManager("uploads");
 
 const UPLOAD_DIR = './uploads';
 
+const GOOGLE_API_KEY = process.env.VITE_GEMINI_PUBLIC_KEY;
+const MONGO_DB_API_KEY = process.env.MONGO;
 console.log("server running");
+const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 
 
 app.use(
@@ -30,26 +37,64 @@ app.use(express.json());
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(MONGO_DB_API_KEY);
     console.log("Connected to MongoDB");
   } catch (err) {
     console.log(err);
   }
 };
 
+/**remove this method afterwards */
+// Endpoint to drop all collections
+app.delete("/api/drop-database", async (req, res) => {
+  try {
+    const collections = ['chats', 'userchats', 'userFeedbacks']; // Add collection names here
+    
+    for (const collectionName of collections) {
+      const collectionExists = await mongoose.connection.db
+        .listCollections({ name: collectionName })
+        .hasNext();
+      
+      if (collectionExists) {
+        await mongoose.connection.db.dropCollection(collectionName);
+        console.log(`Dropped collection: ${collectionName}`);
+      } else {
+        console.log(`Collection ${collectionName} does not exist`);
+      }
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Collections dropped successfully",
+    });
+  } catch (err) {
+    console.error("Error dropping collections:", err);
+    res.status(500).json({
+      success: false,
+      error: "Failed to drop collections",
+      details: err.message,
+    });
+  }
+});
+
+
 
 
 app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
-  const { text } = req.body;
+  const { text, initialMessage, answer } = req.body;
 
+  console.log("POST /api/chats called with text:", text, "initialMessage:", initialMessage, "answer:", answer);
   try {
     // CREATE A NEW CHAT
     const newChat = new Chat({
-      userId: userId,
-      history: [{ role: "user", parts: [{ text }] }],
+      userId,
+      history: initialMessage 
+        ? [{ role: "user", parts: [{ text }] },
+        { role: "model", parts: [{ text: answer }] }  // Store initial answer
+      ]
+        : []
     });
-
     const savedChat = await newChat.save();
 
     // CHECK IF THE USERCHATS EXISTS
@@ -82,8 +127,9 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
         }
       );
 
-      res.status(201).send(newChat._id);
     }
+      console.log("Chat created with id: from backend", newChat._id);
+      res.status(201).send(newChat._id);
   } catch (err) {
     console.log(err);
     res.status(500).send("Error creating chat!");
@@ -91,9 +137,9 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
 });
 
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
-  console.log("UserChats");
+  // console.log("UserChats");
   const userId = req.auth.userId;
-  console.log(userId);
+  // console.log(userId);
   try {
     const userChats = await UserChats.find({ userId });
     res.status(200).send(userChats[0].chats);
@@ -121,7 +167,7 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
 
   const { question, answer } = req.body;
-
+  // console.log("question--->",question,"\n","answer--------->", answer);
   const newItems = [
     ...(question
       ? [{ role: "user", parts: [{ text: question }] }]
@@ -147,12 +193,32 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   }
 });
 
+async function getUserModelConfiguration(userId) {
+  const userFeedback = await UserFeedbacks.findOne({ userId });
+
+  
+  return {
+    systemInstruction: userFeedback?.systemInstruction || 'reply every answer starting with athena:',
+    model: 'gemini-1.5-flash'
+  };
+}
 
 
 // POST endpoint to send the text to the model and get a response
-app.post('/api/generate-response', async (req, res) => {
+app.post('/api/generate-response', ClerkExpressRequireAuth(), async (req, res) => {
   try {
     const { history, text } = req.body;
+    const userId = req.auth.userId;
+    // Retrieve user-specific model configuration
+    const userModelConfig = await getUserModelConfiguration(userId);
+
+    // console.log('system prompt:', userModelConfig.systemInstruction);
+    // Initialize model with user's specific configuration
+    const model = genAI.getGenerativeModel({
+      model: userModelConfig.model,
+      systemInstruction: userModelConfig.systemInstruction + "\n STRICTLY FOLLOW BELOW INSTRUCTIONS ASWELL" + `::CONTEXT::\n${context}'\n'${manual_system_instruction}`
+      // systemInstruction: userModelConfig.systemInstruction
+    });
 
     
     const chat = model.startChat({
@@ -160,11 +226,7 @@ app.post('/api/generate-response', async (req, res) => {
         role,
         parts: [{ text: parts[0].text }],
       }
-    )),
-      generationConfig: {
-        // Optional configuration for generating responses, e.g., max tokens
-      }
-    });
+    )),    });
 
     // Initialize the model and send the text to it
     const rslt = await chat.sendMessage([text]);
@@ -178,6 +240,75 @@ app.post('/api/generate-response', async (req, res) => {
 });
 
 
+export function generateRefinedSystemInstruction(feedbacks) {
+  const aggregatedFeedback = feedbacks.map(fb => 
+    `Feedback (Importance: ${fb.importance}): ${fb.message}`
+  ).join('\n');
+
+  return `
+    REFINED RESPONSE GUIDELINES:
+    ${aggregatedFeedback}
+
+    Additional Refinement Principles:
+    1. STRICTLY FOLLOW THE FEEDBACK GIVEN ABOVE
+    2. Incorporate user feedback for continuous improvement
+    3. Adapt communication style based on user preferences
+
+  `;
+}
+
+app.post('/api/feedback', ClerkExpressRequireAuth(), async (req, res) => {
+  try {
+    const { message, importance } = req.body;
+    const userId = req.auth.userId;
+
+    // Find or create user feedback document
+    let userFeedback = await UserFeedbacks.findOne({ userId });
+
+    // If userFeedback doesn't exist, create a new one
+    if (!userFeedback) {
+      userFeedback = new UserFeedbacks({
+        userId,
+        feedbacks: [],
+        systemInstruction: 'Default system instruction',  // Initial system instruction
+        lastUpdated: new Date(),
+      });
+    }
+
+    // Create the new feedback object
+    const newFeedback = {
+      message,
+      importance,
+    };
+
+    // Add the new feedback to the feedbacks array
+    userFeedback.feedbacks.push(newFeedback);
+
+    // Optionally, you can limit to the last 5 feedbacks
+    const refinedInstruction = generateRefinedSystemInstruction(
+      userFeedback.feedbacks.slice(-5) // Use last 5 feedbacks to generate system instruction
+    );
+
+    // Update the system instruction and lastUpdated fields
+    userFeedback.systemInstruction = refinedInstruction;
+    userFeedback.lastUpdated = new Date();
+
+    // Save the updated feedback document
+    await userFeedback.save();
+
+    // Respond to the client
+    res.status(200).json({
+      message: 'Feedback processed successfully',
+      success: true,
+    });
+  } catch (error) {
+    console.error('Feedback processing error:', error);
+    res.status(500).json({ error: 'Feedback processing failed' });
+  }
+});
+
+
+
 const generateChatSummary = async (chatId, userId) => {
   try {
     // Fetch chat history for the given chatId and userId
@@ -187,7 +318,7 @@ const generateChatSummary = async (chatId, userId) => {
     }
 
     // Format history for the model
-    const formattedHistory = chat.history.map(({ role, parts }) => ({
+    const formattedHistory = chat.history.slice(0, 2).map(({ role, parts }) => ({
       role,
       parts: [{ text: parts[0].text }],
     }));
@@ -200,7 +331,7 @@ const generateChatSummary = async (chatId, userId) => {
     });
 
     // Generate summary by sending a custom prompt
-    const prompt = `Please summarize this conversation in 30 words:`;
+    const prompt = `Summarize this conversation in 15 words`;
     const response = await modelChat.sendMessage([prompt]);
 
     const summary = await response.response.text();
@@ -234,7 +365,7 @@ app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
         const summary = await generateChatSummary(chatData._id, userId);
 
         // Create a good title for the chat (could be based on the summary or some other logic)
-        const title = summary.length > 50 ? summary.substring(0, 50) + "..." : summary;
+        const title = summary.length > 15 ? summary.substring(0, 15) + "..." : summary;
 
         // Return chat overview object
         return {
@@ -247,7 +378,7 @@ app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
       })
     );
 
-    console.log(overviews);
+    // console.log(overviews);
 
     // Filter out any null entries (if a chat no longer exists)
     res.status(200).send(overviews.filter(Boolean));

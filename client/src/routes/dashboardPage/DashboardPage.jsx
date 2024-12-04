@@ -8,19 +8,39 @@ const DashboardPage = () => {
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: (text) => {
+    mutationFn: async (text) => {
+
+          // Generate response before creating chat
+    const responseResult = await fetch(`${import.meta.env.VITE_API_URL}/api/generate-response`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        history: [], 
+        text 
+      }),
+    });
+
+    const { answer } = await responseResult.json();
+    console.log("Answer from dashboard:", answer);
+
       return fetch(`${import.meta.env.VITE_API_URL}/api/chats`, {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ 
+          text,
+          answer,
+          initialMessage: true // Add a flag to prevent duplicate storage
+        }),
       }).then((res) => res.json());
     },
     onSuccess: (id) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["userChats"] });
+      console.log("Chat created with id:", id);
       navigate(`/dashboard/chats/${id}`);
     },
   });

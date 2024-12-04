@@ -12,6 +12,26 @@ const ChatList = () => {
   const [loading, setLoading] = useState(false);
   const [existingFiles, setExistingFiles] = useState([]);
 
+  const drop = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/drop-database`, {
+        method: 'DELETE',
+      });
+      const result = await response.json();
+  
+      if (result.success) {
+        alert("Database dropped successfully!");
+        setExistingFiles([]); // Clear existing files
+        reloadDBPage();
+      } else {
+        alert(result.message || "Failed to drop the database");
+      }
+    } catch (error) {
+      console.error("Error dropping the database:", error);
+      alert("Error dropping the database.");
+    }
+  };
+  
   
   const reloadDBPage = () => {
 
@@ -111,6 +131,7 @@ const ChatList = () => {
       <Link to="/help">
         <FontAwesomeIcon icon={faQuestionCircle} className="link-icon" /> Help
       </Link>
+      {/* <button onClick={drop} className="drop-database-btn">Drop Database</button> */}
 
       <hr />
 
@@ -159,10 +180,14 @@ const ChatList = () => {
           ) : (
             <>
               <FontAwesomeIcon icon={faFileUpload} className="upload-icon" /> 
-              Upload CSV
+              Upload Patients Data
             </>
           )}
         </label>
+      </div>
+
+      <div>
+      <b>Disclaimer: <br></br></b>This tool is designed to assist you but may occasionally produce incorrect or incomplete information. Please review all outputs carefully and consult a professional for critical decisions.
       </div>
     </div>
   );

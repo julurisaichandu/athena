@@ -2,10 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import "./newPrompt.css";
 import Markdown from "react-markdown";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import remarkGfm from "remark-gfm";
+import { faSpinner} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NewPrompt = ({ data }) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // const chat = model.startChat({
   //   history: 
@@ -30,7 +34,11 @@ const NewPrompt = ({ data }) => {
 
   const mutation = useMutation({
   
+    
     mutationFn: ({ question, answer }) => {
+      console.log("in mutation");
+      console.log("question", question);
+      console.log("answer", answer);
       return fetch(`${import.meta.env.VITE_API_URL}/api/chats/${data._id}`, {
         method: "PUT",
         credentials: "include",
@@ -60,7 +68,7 @@ const NewPrompt = ({ data }) => {
 
   const add = async (text, isInitial) => {
     console.log("add triggered with text:", text);
-    if (!isInitial) setQuestion(text);
+    setIsLoading(true); // Start loading
   
     try {
       console.log("Sending message...");
@@ -80,13 +88,19 @@ const NewPrompt = ({ data }) => {
       console.log("Result from backend:", result);
   
       setAnswer(result.answer); // Update the answer state
-  
-      // Immediately call mutation with the latest question and answer
-      mutation.mutate({ question: text, answer: result.answer });
+      if (!isInitial) {
+        await mutation.mutateAsync({ 
+          question: text, 
+          answer: result.answer 
+        });
+      }
     } catch (err) {
       console.error("Error in add function:", err);
+    } finally {
+      setIsLoading(false); // End loading
     }
-  }
+  };
+  
 
   const handleSubmit = async (e) => {
     console.log("handleSubmit triggered with text:", e.target.text.value);
@@ -94,23 +108,27 @@ const NewPrompt = ({ data }) => {
     console.log("in handle submit");
     const text = e.target.text.value;
     if (!text) return;
-
+    setQuestion(""); // Clear question immediately
+    formRef.current.reset(); // Reset the form input field
     add(text, false);
   };
 
   // IN PRODUCTION WE DON'T NEED IT
-  const hasRun = useRef(false);
+  // const hasRun = useRef(false);
 
-  useEffect(() => {
-    if (!hasRun.current) {
-      if (data?.history?.length === 1) {
-    console.log("in use effect, is initial true");
+  // useEffect(() => {
+  //   if (!hasRun.current) {
+  //     if (data?.history?.length === 1) {
+  //   console.log("in use effect, is initial true");
 
-        add(data.history[0].parts[0].text, true);
-      }
-    }
-    hasRun.current = true;
-  }, []);
+  //       add(data.history[0].parts[0].text, true);
+  //     }
+  //   }
+  //   hasRun.current = true;
+
+
+    
+  // }, []);
   // console.log("data", data);
 
   return (
@@ -120,9 +138,12 @@ const NewPrompt = ({ data }) => {
       {question && <div className="message user">{question}</div>}
       {answer && (
         <div className="message">
-          <Markdown>{answer}</Markdown>
+          <Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>
         </div>
       )}
+    
+      {isLoading && <div className="loading-indicator"><FontAwesomeIcon icon={faSpinner} className="loading-icon fa-spin" />Fetching response...</div>}
+
       <div className="endChat" ref={endRef}></div>
       <form className="newForm" onSubmit={handleSubmit} ref={formRef}>
         {/* <input id="file" type="file" multiple={false} hidden /> */}

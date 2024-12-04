@@ -55,14 +55,14 @@ const safetySetting = [
 ];
 
 const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_PUBLIC_KEY);
-const context = await getPatientsDetails();
-const system_instruction = `
+export const context = await getPatientsDetails();
+export const manual_system_instruction = `
     STRICT RESPONSE GUIDELINES:
     1. ONLY use information directly present in the provided context above.
     2. If ANY requested information is NOT in the context:
        - Respond with "Information not available in the provided context."
        - DO NOT generate, guess, or fabricate any details.
-    3. Match the response format exactly to the user's request.
+    3. Match the response format exactly to the user's request. Format output suitable for the react-markdown component.
     4. If unsure about any part of the response, state that explicitly.
     5. Prioritize accuracy over completeness.
     
@@ -80,9 +80,9 @@ const system_instruction = `
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
   safetySetting,
-  systemInstruction: `::CONTEXT::\n${context}'\n'${system_instruction}`,
+  // systemInstruction: `::CONTEXT::\n${context}'\n'${system_instruction}`,
 
 });
-const  tokens = await model.countTokens(`::CONTEXT::\n${context}'\n'${system_instruction}`);
+const  tokens = await model.countTokens(`::CONTEXT::\n${context}'\n'${manual_system_instruction}`);
 console.log("tokens count---------------------------->", tokens);
 export default model;
