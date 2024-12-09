@@ -1,7 +1,10 @@
-# Athena - Patients records retrieval and visualization AI
+# Athena - Patients records retrieval and Visualization AI
 
 Athena is an intelligent application that enables doctors to interact with medical data of their patients through a conversational interface. It helps doctors by answering queries, navigating chat history for easy access, and providing a visual representation of the patients database.
-![main-page.png](/screenshots/main_page.png)
+
+<div style="text-align: center;">
+<img src="./screenshots/main_page.png" width="50%" height="50%" alt="athena-main-page.png" style="align:centre"/></div>
+
 ## Features
 - **Chat with the Database**: Users can interact with the database through a chat interface, asking questions and receiving answers.
 - **Chat History**: Navigate and explore previous conversations for review or further insights.
