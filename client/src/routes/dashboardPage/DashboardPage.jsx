@@ -50,6 +50,10 @@ const DashboardPage = () => {
 
     mutation.mutate(text);
   };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
   return (
     <div className="dashboardPage">
       <div className="texts">
@@ -58,15 +62,15 @@ const DashboardPage = () => {
         </div>
         <div className="options">
           <div className="option">
-            <img src="/chat.png" alt="" />
+            <img src="/chat.png" alt="athena-chat-image" onClick={() => handleNavigation('/history')} />
             <span>History</span>
           </div>
-          <div className="option">
-            <img src="/image.png" alt="" />
+          <div className="option" onClick={() => handleNavigation('/help')}>
+            <img src="/image.png" alt="athena-help-image" />
             <span>Help</span>
           </div>
-          <div className="option">
-            <img src="/code.png" alt="" />
+          <div className="option" onClick={() => handleNavigation('/db-visualizer')}>
+            <img src="/code.png" alt="athena-db-visualizer-image" />
             <span>Data visualizer</span>
           </div>
         </div>

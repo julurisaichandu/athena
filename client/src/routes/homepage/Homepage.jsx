@@ -5,7 +5,7 @@ const Homepage = () => {
 
   return (
     <div className="homepage">
-      <img src="/orbital.png" alt="" className="orbital" />
+      <img src="/orbital.png" alt="some-image-orbital" className="orbital" />
       <div className="left">
         <h1>Athena</h1>
         <h2>Supercharge your patients data search using Athena</h2>
@@ -16,7 +16,7 @@ const Homepage = () => {
         <Link to="/dashboard">Get Started</Link>
       </div>
       <div className="terms">
-        <img src="/logo.png" alt="" />
+        <img src="/logo.png" alt="athena-logo" />
         {/* <div className="links">
           <Link to="/">Terms of Service</Link>
           <span>|</span>

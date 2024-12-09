@@ -1,18 +1,19 @@
 # Athena - Medical Document and Report Analysis
 
-Athena is an intelligent application that enables users to interact with medical data through a conversational interface. It helps patients and doctors by answering queries, generating reports, navigating chat history, and providing a visual representation of the database.
+Athena is an intelligent application that enables doctors to interact with medical data of their patients through a conversational interface. It helps doctors by answering queries, navigating chat history for easy access, and providing a visual representation of the patients database.
 
 ## Features
 - **Chat with the Database**: Users can interact with the database through a chat interface, asking questions and receiving answers.
-- **Generate Reports**: Users can generate reports related to a patient by chatting with the system.
 - **Chat History**: Navigate and explore previous conversations for review or further insights.
-- **Database Visualization**: Explore the database visually to see the details of patient data such as names, diagnoses, attendance records, etc.
-- **Help Section**: An FAQ section to help users understand how to use the application and troubleshoot common issues.
+- **Database Visualization**: Explore the database visually to see the details of patient data such as names, diagnoses, medication records, etc.
+- **Help Section**: An FAQ section to help users understand how to use the application and details explaining each page.
 
 ## Prerequisites
 - Node.js v14.x or higher
 - npm or yarn
-- OpenAI or similar API key for AI responses (optional, depending on your setup)(we have used groq)
+- Gemini API key for AI responses
+- MongoDB API for databases
+- Clerk authenticator API key
 
 ## Setup & Installation
 Follow these steps to get the application running on your local machine:
@@ -20,95 +21,92 @@ Follow these steps to get the application running on your local machine:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/julurisaichandu/athena.git
-cd athena
+cd athena # navigate into athena directory
 ```
 ### 2. Install dependencies
 ```bash
+cd client   # navigate into client directory and install dependencies
 npm install
+
+cd backend   # navigate into backend directory and install dependencies
+npm install
+
 ```
 
 ### 3. Set Up Environment variables
-<!-- #### for authentication
-To do this, first, paste the ENVs you copied from the Clerk dashboard into your `.env.local` file from earlier so it now looks something like this.
-```bash
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="<get this from clerk>"
-CLERK_SECRET_KEY="<get this from clerk>"
-```
-follow this blog for authentication setup - https://conermurphy.com/blog/how-to-build-your-own-chatgpt-clone-using-clerk-aws-bedrock
--->
-#### for backend
-Create a .env file in the backend directory and define the following variables:
+
+### Backend
+Create a .env file in the backend directory root and define the following variables:
 
 ```bash
-MONGO = mongodb+srv://<username>:<password>@cluster0.a2vyk.mongodb.net/?retryWrites=true&w=majority&appName=<clusetername>
-CLIENT_URL = <frontend-url> in mycase it is - http://localhost:5173
+MONGO = mongodb+srv://<username>:<password>@cluster0.a2vyk.mongodb.net/?retryWrites=true&w=majority&appName=<clusetername> # more information for api given below
 
+CLIENT_URL = <frontend-url> # eg. http://localhost:5173
 
-CLERK_PUBLISHABLE_KEY= "get from clerk website, started with pk"
-CLERK_SECRET_KEY= "get from clerk website, startes with sk"
+CLERK_PUBLISHABLE_KEY = <pk.....>   # get from clerk website, starts with pk, more information for api given below
+CLERK_SECRET_KEY = <sk....>    # get from clerk website, starts with sk, more information for api given below
 
-VITE_GEMINI_PUBLIC_KEY ="get form gemini website"
+VITE_GEMINI_PUBLIC_KEY = <Gemini API key>    # get form gemini website, more instructions for setting up gemini api key is mentioned below
 ```
-#### for frontend
+### Frontend
 create .env inside client folder
 ```bash
-VITE_CLERK_PUBLISHABLE_KEY=<"get from clerk website, started with pk>
-VITE_API_URL = <backend url> , in my case it is "http://localhost:3000"
-VITE_GEMINI_PUBLIC_KEY = "get form gemini website"
 
-VITE_CLERK_PUBLISHABLE_KEY="get from clerk website, started with pk"
-CLERK_SECRET_KEY="get from clerk website, startes with sk"
+VITE_API_URL = <backend url> # eg. "http://localhost:3000"
+VITE_GEMINI_PUBLIC_KEY = <Gemini API key>  # get form gemini website, same as the VITE_GEMINI_PUBLIC_KEY
+
+VITE_CLERK_PUBLISHABLE_KEY = <pk.....>   # get from clerk website, same as CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY = <sk....>    # get from clerk website, same as CLERK_SECRET_KEY
 ```
-some are same in both backend and frontend .env
+some environment variables are same in both backend and client .env files
 
-for setting up clerk credentials:
-- create your clerk account using this quick start tutorial from clerk docs- https://clerk.com/docs/quickstarts/setup-clerk
+#### For setting up Clerk authenticator API:
+- Create your clerk account using this quick start tutorial from clerk docs- https://clerk.com/docs/quickstarts/setup-clerk
 - visit this site to get the publishable and secret keys info in the third step,"set environment" section - https://clerk.com/docs/references/nodejs/overview
-- now paste the same in the front end and backend .env files. Check that names of both the keys for backend and frontend are different, howveer the values are same.
+- now paste the same in the front end and backend .env files. Check that names of both the keys for backend and frontend are different, however the values are same.
 
-for getting the gemini api key:
+#### For getting the gemini api key:
 - visit the google developers website - https://ai.google.dev/gemini-api/docs/api-key
 - click on the get gemini api key button and after redirecting to the ai studio, you can generate your api key by clicking the "get api key" button.
 - paste the api key into the backend .env file at "VITE_GEMINI_PUBLIC_KEY" 
+- sometims you need to login into google cloud account to be able to get the gemini api key
+- gemini models rate limits - https://ai.google.dev/gemini-api/docs/models/gemini#gemini-1.5-flash
 
-for getting mongodb api:
-- go to this page of mongodb docs and follow the section named "Create a free MongoDB Atlas cluster and load the sample data" and create a free mongodb cluster- https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
+#### For getting MongoDb API:
+- Go to given link of mongodb docs and follow the section named "Create a free MongoDB Atlas cluster and load the sample data" and create a free mongodb cluster- https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
 - Remember your username and password for conenction in the next step
-- in the nextwork access tab on the left, make the api access from all the ip address. for that, click on "add ip address" and select allow access from everywhere and then confirm. 
-- now after creating a mongodb cluster, click the connect button in the overview page and go to drivers section and  you can find a string to connect to the cluster if you scrolldown in the drivers section. fill your username and password in the place holders
-- in the nextwork access tab on the left, make the api access from all the ip address. for that, click on "add ip address" and select allow access from everywhere and then confirm. 
-
-
-gemini models rate limits - https://ai.google.dev/gemini-api/docs/models/gemini#gemini-1.5-flash
+- In the nextwork access tab on the left, make the api access from all the ip address. for that, click on "add ip address" and select allow access from everywhere and then confirm. 
+- Now after creating a mongodb cluster, click the connect button in the overview page and go to drivers section and  you can find a string to connect to the cluster if you scrolldown in the drivers section. fill your username and password in the place holders
+- In the nextwork access tab on the left, make the api access from all the ip address. for that, click on "add ip address" and select allow access from everywhere and then confirm. 
 
 
 ### 5. Running the frontend
-run frontend using this below command
-
 ```bash
+cd client # navigate only if not already inside the root of client
 npm run dev
 ```
 ### 6. Running the backend
 from the root folder, go to backend directory and run expressjs backend
 ```bash
-cd backend  # now your current dir location should be athena/backend
-node index.js
+cd backend  # now your current dir location should be athena/backend. navigate only if not already inside the root of backend
+nom run start
 ```
 
 ## Tech Stack
-- Next.js
-- Tailwind CSS & Shadcn/ui
+- React.js
+- HTML, CSS
 - Clerk
+- MongoDB
+- Gemini API
+- Expressjs
 
 # Screen shots
-There are screenshots of our project int he screenshots folder in the athena directory
+There are screenshots of our project in the screenshots folder in the athena directory
 
-# feedback plan
-Please refer to feedbackplan.pdf file in the the athena directory
 
-## Note
-We took reference from this project
-https://conermurphy.com/blog/how-to-build-your-own-chatgpt-clone-using-clerk-aws-bedrock
+# Video for final submission
+#### Drive Link - 
+- https://drive.google.com/file/d/1JsrE1EWyfPQi8SQmJSOPeF7fnMeftEiO/view?usp=sharing
 
-Contributors:
+# Contributors:
 Saichandu Juluri & Pranav Kompally
