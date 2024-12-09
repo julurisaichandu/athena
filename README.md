@@ -92,7 +92,7 @@ npm run dev
 from the root folder, go to backend directory and run expressjs backend
 ```bash
 cd backend  # now your current dir location should be athena/backend. navigate only if not already inside the root of backend
-nom run start
+npm run start
 ```
 
 ## Tech Stack
