@@ -11,18 +11,6 @@ const NewPrompt = ({ data }) => {
   const [answer, setAnswer] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const chat = model.startChat({
-  //   history: 
-  //     data?.history.map(({ role, parts }) => ({
-  //       role,
-  //       parts: [{ text: parts[0].text }],
-  //     })),
-    
-  //   generationConfig: {
-  //     // maxOutputTokens: 100,
-  //   },
-  // });
-
   const endRef = useRef(null);
   const formRef = useRef(null);
 
@@ -125,11 +113,8 @@ const NewPrompt = ({ data }) => {
   //     }
   //   }
   //   hasRun.current = true;
-
-
-    
   // }, []);
-  // console.log("data", data);
+
 
   return (
     <>

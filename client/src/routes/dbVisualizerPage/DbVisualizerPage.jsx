@@ -80,7 +80,7 @@ const DbVisualizerPage = () => {
         });
     };
 
-    // range cahneg code, do not remove it
+    // range change code, do not remove it
     // const handleRangeChange = (e) => {
     //     const { name, value } = e.target;
     //     console.log (value.split(',').map(Number) );
@@ -203,7 +203,7 @@ const DbVisualizerPage = () => {
                             className="download-btn"
                             title="Download Filtered Data"
                         >
-                            Download
+                            Export Data
                             <FontAwesomeIcon icon={faDownload} />
                         </button>
                         </div>

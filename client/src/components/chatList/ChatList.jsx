@@ -35,6 +35,8 @@ const ChatList = () => {
   
   const reloadDBPage = () => {
 
+    // Reload the page to reflect the changes
+    // future changes
   // navigate('/db-visualizer', { replace: true });
   };
 
@@ -146,13 +148,14 @@ const ChatList = () => {
                   <FontAwesomeIcon icon={faFile} className="file-icon" />
                   {fileName}
                 </div>
-                <button 
+                {/**Do not remove this code. This can ube used for deletion of datasets */}
+                {/* <button 
                   onClick={() => handleFileDelete(fileName)}
                   className="delete-file-btn"
                   title="Delete File"
                 >
                   <FontAwesomeIcon icon={faTrash} />
-                </button>
+                </button> */}
               </li>
             ))}
           </ul>

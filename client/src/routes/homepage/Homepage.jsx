@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import "./homepage.css";
-import { TypeAnimation } from "react-type-animation";
-import { useState } from "react";
 
 const Homepage = () => {
-  const [typingStatus, setTypingStatus] = useState("human1");
 
   return (
     <div className="homepage">
@@ -18,22 +15,13 @@ const Homepage = () => {
         </h3>
         <Link to="/dashboard">Get Started</Link>
       </div>
-      {/* <div className="right">
-        <div className="imgContainer">
-          <div className="bgContainer">
-            <div className="bg"></div>
-          </div>
-          <img src="/bot.png" alt="" className="bot" />
-
-        </div>
-      </div> */}
       <div className="terms">
         <img src="/logo.png" alt="" />
-        <div className="links">
+        {/* <div className="links">
           <Link to="/">Terms of Service</Link>
           <span>|</span>
           <Link to="/">Privacy Policy</Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

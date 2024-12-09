@@ -14,6 +14,7 @@ async function getPatientsDetails() {
     return cachedPatientsContext;
   }
   try {
+    // Directory containing JSON files
     const inputDirectory = "patients_json_data";
     // Get all files in the directory
     const files = await fs.promises.readdir(inputDirectory);

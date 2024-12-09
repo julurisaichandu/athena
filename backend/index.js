@@ -25,7 +25,6 @@ const MONGO_DB_API_KEY = process.env.MONGO;
 console.log("server running");
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
@@ -81,6 +80,7 @@ app.delete("/api/drop-database", async (req, res) => {
 
 
 app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
+  // api to create a new chat
   const userId = req.auth.userId;
   const { text, initialMessage, answer } = req.body;
 
@@ -137,9 +137,7 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
 });
 
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
-  // console.log("UserChats");
   const userId = req.auth.userId;
-  // console.log(userId);
   try {
     const userChats = await UserChats.find({ userId });
     res.status(200).send(userChats[0].chats);
@@ -167,7 +165,6 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
 
   const { question, answer } = req.body;
-  // console.log("question--->",question,"\n","answer--------->", answer);
   const newItems = [
     ...(question
       ? [{ role: "user", parts: [{ text: question }] }]
@@ -212,7 +209,6 @@ app.post('/api/generate-response', ClerkExpressRequireAuth(), async (req, res) =
     // Retrieve user-specific model configuration
     const userModelConfig = await getUserModelConfiguration(userId);
 
-    // console.log('system prompt:', userModelConfig.systemInstruction);
     // Initialize model with user's specific configuration
     const model = genAI.getGenerativeModel({
       model: userModelConfig.model,
@@ -231,7 +227,6 @@ app.post('/api/generate-response', ClerkExpressRequireAuth(), async (req, res) =
     // Initialize the model and send the text to it
     const rslt = await chat.sendMessage([text]);
     const response = await rslt.response.text();
-    console.log(response);
     res.status(200).send({ answer: response });
   } catch (err) {
     console.error('Error generating response:', err);
@@ -377,8 +372,6 @@ app.get("/api/chat-overviews", ClerkExpressRequireAuth(), async (req, res) => {
         };
       })
     );
-
-    // console.log(overviews);
 
     // Filter out any null entries (if a chat no longer exists)
     res.status(200).send(overviews.filter(Boolean));
@@ -551,7 +544,7 @@ app.use((err, req, res, next) => {
 
 
 
-
+// future work
 
 // PRODUCTION
 // app.use(express.static(path.join(__dirname, "../client/dist")));
@@ -562,7 +555,7 @@ app.use((err, req, res, next) => {
 
 app.get("/", async (req, res) => {
   console.log("Hello World!");
-  res.status(200).send({ message:         await fs.promises.readdir("patients_json_data") });
+  res.status(200).send({ message:await fs.promises.readdir("patients_json_data") });
 });
 
 app.listen(port, () => {

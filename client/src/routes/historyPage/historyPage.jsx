@@ -16,9 +16,6 @@ const HistoryPage = () => {
     refetchOnMount: true, // Refetches when the component is mounted again
   });
 
-  // console.log("History page called -> Data:", data);
-//  const isLoading = false;
-//   const  error = false;
 
   return (
     <div>

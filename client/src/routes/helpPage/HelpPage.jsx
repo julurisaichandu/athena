@@ -40,7 +40,7 @@ const HelpPage = () => {
                 <h3>
                     Create a New Chat Page
                 </h3>
-                <p>You can ask about your patients using the chat feature in this page.</p>
+                <p>You can ask about your patients using the chat feature in this page and also give feedback</p>
                 <h3>
                     History Page
                 </h3>
