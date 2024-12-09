@@ -13,9 +13,9 @@ Athena is an intelligent application that enables doctors to interact with medic
 
 ## Prerequisites
 - Node.js v14.x or higher
-- npm or yarn
-- Gemini API key for AI responses
-- MongoDB API for databases
+- npm
+- Gemini API key for AI chat responses
+- MongoDB API for database
 - Clerk authenticator API key
 
 ## Setup & Installation
