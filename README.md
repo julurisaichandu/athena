@@ -3,7 +3,8 @@
 Athena is an intelligent application that enables doctors to interact with medical data of their patients through a conversational interface. It helps doctors by answering queries, navigating chat history for easy access, and providing a visual representation of the patients database.
 
 <div style="text-align: center;">
-<img src="./screenshots/main_page.png" width="75%" height="75%" alt="athena-main-page.png" style="align:centre"/></div>
+<img src="https://github.com/user-attachments/assets/ee63ac8f-5905-4049-8576-f45f0d40798e" width="75%" height="75%" alt="athena-main-page.png" style="align:centre"/></div>
+
 
 ## Features
 - **Chat with the Database**: Users can interact with the database through a chat interface, asking questions and receiving answers.
