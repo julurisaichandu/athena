@@ -1,0 +1,33 @@
+services:
+  web:
+    depends_on:
+      - api
+    build: ./client 
+    ports:
+      - 5173:5173
+    environment:
+      VITE_API_URL: "http://localhost:3000"
+      VITE_GEMINI_PUBLIC_KEY: # fill gemini public key here
+      VITE_CLERK_PUBLISHABLE_KEY: # fill clerk publishable key here
+      CLERK_SECRET_KEY: # fill clerk secret key here
+    networks:
+      - athena-nwk
+  api:
+    build: ./backend
+    ports:
+      - 3000:3000
+    environment:
+      MONGO: # fill mongo connection string here
+      CLIENT_URL: http://localhost:5173
+      CLERK_PUBLISHABLE_KEY: # fill clerk publishable key here
+      CLERK_SECRET_KEY: # fill clerk secret key here
+      VITE_GEMINI_PUBLIC_KEY: # fill gemini public key here
+    
+    networks:
+      - athena-nwk
+
+networks:
+  athena-nwk:
+    driver: bridge
+# volumes:
+#   volume_backend:
