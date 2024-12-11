@@ -3,7 +3,7 @@
 Athena is an intelligent application that enables doctors to interact with medical data of their patients through a conversational interface. It helps doctors by answering queries, navigating chat history for easy access, and providing a visual representation of the patients database.
 
 <div style="text-align: center;">
-<img src="./screenshots/main_page.png" width="50%" height="50%" alt="athena-main-page.png" style="align:centre"/></div>
+<img src="./screenshots/main_page.png" width="75%" height="75%" alt="athena-main-page.png" style="align:centre"/></div>
 
 ## Features
 - **Chat with the Database**: Users can interact with the database through a chat interface, asking questions and receiving answers.
@@ -13,9 +13,9 @@ Athena is an intelligent application that enables doctors to interact with medic
 
 ## Prerequisites
 - Node.js v14.x or higher
-- npm or yarn
-- Gemini API key for AI responses
-- MongoDB API for databases
+- npm
+- Gemini API key for AI chat responses
+- MongoDB API for database
 - Clerk authenticator API key
 
 ## Setup & Installation
@@ -92,7 +92,7 @@ npm run dev
 from the root folder, go to backend directory and run expressjs backend
 ```bash
 cd backend  # now your current dir location should be athena/backend. navigate only if not already inside the root of backend
-nom run start
+npm run start
 ```
 
 ## Tech Stack
